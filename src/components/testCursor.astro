@@ -4,7 +4,7 @@
 <script type="text/javascript">
   // <![CDATA[
   var colours=new Array("#a6f", "#60f", "#60f", "#a6f", "#fff"); // colours for top, right, bottom and left borders and background of bubbles
-  var bubbles=66; // maximum number of bubbles on screen
+  var bubbles=5; // maximum number of bubbles on screen
   var over_or_under="over"; // set to "over" for bubbles to always be on top, or "under" to allow them to float behind other objects
   
   /****************************
@@ -40,7 +40,6 @@
     for (i=0; i<bubbles; i++) {
       rats=createDiv("3px", "3px");
       rats.style.visibility="hidden";
-      rats.style.pointerEvents="none";
     rats.style.zIndex=(over_or_under=="over")?"1001":"0";
   
       div=createDiv("auto", "auto");
@@ -70,7 +69,7 @@
       div.right="1px";
       div.bottom="1px";
       div.top="1px";
-      div.backgroundColor=colours[4];
+      //div.backgroundColor=colours[4];
       if (navigator.appName=="Microsoft Internet Explorer") div.filter="alpha(opacity=50)";
       else div.opacity=0.5;
       document.body.appendChild(rats);
@@ -196,13 +195,14 @@
     }
   }
   
-  function createDiv(height, width) {
+  function createDiv(height, width, offset="3px") {
     var div=document.createElement("div");
     div.style.position="absolute";
     div.style.height=height;
     div.style.width=width;
+    //div.style.left="30px";
     div.style.overflow="hidden";
-    div.style.backgroundColor="transparent";
+    div.style.backgroundColor="none";
     div.style.pointerEvents="none";
     return (div);
   }
