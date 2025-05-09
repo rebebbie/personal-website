@@ -1,7 +1,21 @@
 ---
 // import astroLogo from '../assets/astro.svg';
 // import background from '../assets/background.svg';
+import Bubble from './cursorTrail.astro';
 ---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<!-- /* TEMPORARY-ASSET-BELOW */ -->
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Bec!</title>
+	</head>
+	<body>
+		<slot />
 
 <div id="container">
 	<main>
@@ -37,7 +51,19 @@
 	</a>
 </div>
 
+<!-- <script type="module" src="src/components/cursorTrail.js"></script> -->
+ <Bubble />
+
+</body>
+</html>
+
 <style>
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+	}
 	#container {
 		font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
 		/* TEMPORARY-ASSET-BELOW */
