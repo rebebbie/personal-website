@@ -1,15 +1,11 @@
 ---
-import astroLogo from '../assets/astro.svg';
-import background from '../assets/background.svg';
+// import astroLogo from '../assets/astro.svg';
+// import background from '../assets/background.svg';
 ---
 
 <div id="container">
-	<img id="background" src={background.src} alt="" fetchpriority="high" />
 	<main>
 		<section id="hero">
-			<a href="https://astro.build"
-				><img src={astroLogo.src} width="115" height="48" alt="Astro Homepage" /></a
-			>
 			<h1>
 				To get started, open the <code><pre>src/pages</pre></code> directory in your project.
 			</h1>
@@ -42,18 +38,11 @@ import background from '../assets/background.svg';
 </div>
 
 <style>
-	#background {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		z-index: -1;
-		filter: blur(100px);
-	}
-
 	#container {
 		font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
+		/* TEMPORARY-ASSET-BELOW */
+		/* background-image: url('../assets/background_placeholder.gif');  */
+		background-size: cover; 
 		height: 100%;
 	}
 
