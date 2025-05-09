@@ -3,7 +3,7 @@
 ---
 <script type="text/javascript">
   // <![CDATA[
-  var colours=new Array("#a6f", "#60f", "#60f", "#a6f", "#FF0000"); // colours for top, right, bottom and left borders and background of bubbles
+  var colours=new Array("#a6f", "#60f", "#60f", "#a6f", "#fff"); // colours for top, right, bottom and left borders and background of bubbles
   var bubbles=66; // maximum number of bubbles on screen
   var over_or_under="over"; // set to "over" for bubbles to always be on top, or "under" to allow them to float behind other objects
   
@@ -89,15 +89,19 @@
       for (c=0; c<bubbles; c++) if (!bubby[c]) {
         bubb[c].left=(bubbx[c]=x)+"px";
         bubb[c].top=(bubby[c]=y-3)+"px";
-        bubb[c].width="5px";
-        bubb[c].height="5px"
+        bubb[c].width="5px"; //initial bubble width
+        bubb[c].height="5px" //initial bubble height
         bubb[c].visibility="visible";
-        bubbs[c]=3;
+        bubbs[c]=6; //rate at which they float up
         break;
       }
     }
-    for (c=0; c<bubbles; c++) if (bubby[c]) update_bubb(c);
-    setTimeout("bubble()", 40);
+    for (c=0; c<bubbles; c++) {
+      if (bubby[c]) update_bubb(c);
+      setTimeout("update_bubb()", 50);
+    }
+    //setTimeout("bubble()", 30);
+    setTimeout("bubble()", 20);
   }
   
   document.onmousedown=splash;
@@ -113,19 +117,19 @@
     if (bubby[i]) {
       bubby[i]-=bubbs[i]/2+i%2;
       bubbx[i]+=(i%5-2)/5;
-      if(Math.random()<0.045){
+      if(Math.random()<0.05){
         bubb[i].visibility="hidden";
         bubby[i]=0;
         return;
       }
       if (bubby[i]>sdown && bubbx[i]>sleft && bubbx[i]<sleft+swide+bubbs[i]) {
-      if (Math.random()<bubbs[i]/shigh*3 && bubbs[i]++<7) {
-      bubb[i].width=bubbs[i]+"px";
-      bubb[i].height=bubbs[i]+"px";
-      }
-        bubb[i].top=bubby[i]+"px";
-        bubb[i].left=bubbx[i]+"px";
-      }
+        if (Math.random()<bubbs[i]/shigh*2 && bubbs[i]++<8) {
+        bubb[i].width=bubbs[i]+"px";
+        bubb[i].height=bubbs[i]+"px";
+        }
+          bubb[i].top=bubby[i]+"px";
+          bubb[i].left=bubbx[i]+"px";
+        }
       else {
         bubb[i].visibility="hidden";
         bubby[i]=0;
@@ -142,8 +146,8 @@
     }
     else {
       set_scroll();
-      y=event.y+sdown;
-      x=event.x+sleft;
+      y=e.y+sdown;
+      x=e.x+sleft;
     }
   }
   
