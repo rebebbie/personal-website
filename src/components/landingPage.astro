@@ -87,14 +87,14 @@ import muteImg from '../assets/music/mute-light.svg';
 
 <div class="landingTable">
 	<div class="col-3">
-		<img src={fishImg.src}>
+		<img src={fishImg.src} class="scaleImg">
 	</div>
 	<div class="col-6">
 		<p class="pixelH">Column Header</p>
 		<p class="redhatBody">Some text..</p>
 	</div>
 	<div class="col-3">
-		<img src={fishImg.src} class="flipImg">
+		<img src={fishImg.src} class="flipScaleImg">
 	</div>
 </div>
 
@@ -183,8 +183,13 @@ import muteImg from '../assets/music/mute-light.svg';
 		/* colour of the bar will be green */
 	}
 
-	img.flipImg {
+	img.flipScaleImg {
 		transform: rotate(180deg);
+		width: 100%;
+	}
+
+	img.scaleImg{
+		width: 100%;
 	}
 
 	
