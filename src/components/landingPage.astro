@@ -3,6 +3,11 @@
 // import background from '../assets/background.svg';
 //import Bubble from './cursorTrail.astro';
 import Bubble from './cursorTrail.astro';
+import fishImg from '../assets/sketchy_fish.svg';
+import backImg from '../assets/music/back-light.svg';
+import playImg from '../assets/music/play-light.svg';
+import forwImg from '../assets/music/forw-light.svg';
+import muteImg from '../assets/music/mute-light.svg';
 ---
 
 <!doctype html>
@@ -28,19 +33,68 @@ import Bubble from './cursorTrail.astro';
 		</div>
 	</main>
 </div> -->
+<div class="musicPlayer">
+	<table>
+		<tbody>
+			<tr>
+				<td>
+					<div class="prev-song" onclick="prevSong()">
+						<img src={backImg.src} class="musicButton">
+					</div>
+				</td>
+				<td>
+					<div class="play-song" onclick="playSong()">
+						<img src={playImg.src} class="musicButton">
+					</div>
+				</td>
+				<td>
+					<div class="next-song" onclick="nextSong()">
+						<img src={forwImg.src} class="musicButton">
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div>
+		<p><a class="pixelEm"><i>placeholder for SONG TITLE and ARTIST NAME</i></a></p>
+	</div>
+	<div>
+		<div class="musicBar">
+			<p class="redhatBody">PLACEHOLDER - 0:00</p>
+		</div>
+		<div class="musicBar">
+			<p class="redhatBody">PLACEHOLDER - 3:00</p>
+		</div>
+	</div>
+	<table>
+		<tbody>
+			<tr>
+				<td>
+					<div class="mute" onclick="muteSong()">
+						<img src={muteImg.src} class="musicButton">
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div>
+		<div class="musicBar">
+			<p class="redhatBody">PLACEHOLDER - 0</p>
+		</div>
+	</div>
+
+</div>
 
 <div class="landingTable">
 	<div class="col-3">
-		<p class="pixelH">Column 1</p>
-		<p class="redhatBody">Some text..</p>
+		<img src={fishImg.src}>
 	</div>
 	<div class="col-6">
-		<p class="pixelH">Column 2</p>
+		<p class="pixelH">Column Header</p>
 		<p class="redhatBody">Some text..</p>
 	</div>
 	<div class="col-3">
-		<p class="pixelH">Column 3</p>
-		<p class="redhatBody">Some text..</p>
+		<img src={fishImg.src} class="flipImg">
 	</div>
 </div>
 
@@ -72,7 +126,7 @@ import Bubble from './cursorTrail.astro';
 		margin: 0;
 		width: 100%;
 		height: 100%;
-		overflow: hidden;
+		overflow-x: hidden;
 		cursor: url("../assets/cursor/normalLight.cur"), auto;
 		background: #14110F;
 	}
@@ -109,6 +163,28 @@ import Bubble from './cursorTrail.astro';
 		background: #14110F;
 		background-size: cover; 
 		height: 100%;
+	}
+
+	.musicPlayer {
+		width: 100%;
+		height: 30px;
+		left: 0;
+		padding-bottom: 30px;
+   		display: flex;
+	}
+	.musicButton{
+		width: 30px;
+		padding-left: 1em;
+		padding-right: 1em;
+	}
+	.musicBar {
+		display: inline-block;
+		padding-left: 10px;
+		/* colour of the bar will be green */
+	}
+
+	img.flipImg {
+		transform: rotate(180deg);
 	}
 
 	
@@ -250,6 +326,9 @@ import Bubble from './cursorTrail.astro';
 		letter-spacing: -0.006em;
 		margin: 0;
 		cursor: url("../assets/cursor/textLight.cur"), auto;
+		width: auto;
+		text-align: center;
+		padding: 0.5em 0;
 	}
 
 	/* code {
