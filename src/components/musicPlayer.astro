@@ -1,0 +1,136 @@
+---
+import backImg from '../assets/music/back-light.svg';
+import playImg from '../assets/music/play-light.svg';
+import forwImg from '../assets/music/forw-light.svg';
+import muteImg from '../assets/music/mute-light.svg';
+import songTest from '../assets/music/songs/testsong.mp3';
+
+---
+
+<div class="musicPlayer">	
+    <div class="musicBarBox">
+        <div class="musicControls">
+            <div class="prev-song" onclick="prevSong()">
+                <img src={backImg.src} class="musicButton">
+            </div>
+            <div class="play-song" onclick="playPauseSong()" id="playPause">
+                <img src={playImg.src} class="musicButton">
+            </div>
+            <div class="next-song" onclick="nextSong()">
+                <img src={forwImg.src} class="musicButton">
+            </div>
+        </div>
+
+        <audio controls id="curSong">
+            <source src={ songTest } type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <input type = "range" value="0" id="musicBar">
+    </div>
+
+    <script type="text/javascript">
+        let progress = document.getElementById("musicBar");
+        let song = document.getElementById("curSong");
+        let playpause = document.getElementById("playPause");
+
+        song.onloadedmetadata = function(){
+            progress.max = curSong.duration;
+            progress.value = curSong.currentTime;
+        }
+
+        function playPauseSong(){
+            // TODO:
+            // need to find a way to make this change from playImg to pauseImg...
+            // refer to javascript tutorials ... 
+            if(playpause.classList.contains("play-song")){
+                curSong.pause();
+            }
+            else{
+                curSong.play();
+            }
+        }
+    </script>
+
+
+
+	<div>
+		<p><a class="pixelEm"><i>placeholder for SONG TITLE and ARTIST NAME</i></a></p>
+	</div>
+	<div>
+		<div class="musicBarBox">
+			<p class="redhatBody">PLACEHOLDER - 0:00</p>
+		</div>
+		<div class="musicBarBox">
+			<p class="redhatBody">PLACEHOLDER - 3:00</p>
+		</div>
+	</div>
+	<table>
+		<tbody>
+			<tr>
+				<td>
+					<div class="mute" onclick="muteSong()">
+						<img src={muteImg.src} class="musicButton">
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div>
+		<div class="musicBarBox">
+			<p class="redhatBody"> - 0</p>
+		</div>
+	</div>
+
+</div>
+
+<style>
+	.musicPlayer {
+		width: 100%;
+		height: 70px;
+		left: 0;
+		padding-bottom: 30px;
+   		display: flex;
+        justify-content: space-between;
+	}
+    .musicControls{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+	.musicButton{
+		width: 30px;
+		padding-left: 1em;
+		padding-right: 1em;
+	}
+    .musicBarBox {
+        background: transparent;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 7px;
+    }
+	#musicBar {
+        -webkit-appearance: none;
+        width: auto;
+        height: 6px;
+        background: #B9D996; 
+        border-radius: 5px;
+
+
+		display: inline-block;
+        /* display: flex;
+        justify-content: space-between; */
+		padding-left: 10px;
+		/* colour of the bar will be green */
+	}
+    #musicBar::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        /* TEMPORARY-ASSET-BELOW */
+        /* change this to a solosis pixel svg.....? :pleading_face: */
+        width:30px;
+        height:30px;
+        color:#B9D996;
+        border:8px solid #B9D996;
+        border-radius: 50%;
+    }
+</style>
