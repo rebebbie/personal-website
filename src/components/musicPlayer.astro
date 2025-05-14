@@ -14,7 +14,7 @@ import songTest from '../assets/music/songs/testsong.mp3';
                 <img src={backImg.src} class="musicButton">
             </div>
             <div class="play-song" onclick="playPauseSong()" id="playPause">
-                <img src={playImg.src} class="musicButton">
+                <img class="playButton">
             </div>
             <div class="next-song" onclick="nextSong()">
                 <img src={forwImg.src} class="musicButton">
@@ -102,6 +102,12 @@ import songTest from '../assets/music/songs/testsong.mp3';
 		padding-left: 1em;
 		padding-right: 1em;
 	}
+    .playButton {
+        content: {playImg.src};
+		width: 30px;
+		padding-left: 1em;
+		padding-right: 1em;
+    }
     .musicBarBox {
         background: transparent;
         display: flex;
