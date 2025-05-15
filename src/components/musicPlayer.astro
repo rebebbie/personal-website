@@ -20,11 +20,15 @@ import songTest from '../assets/music/songs/testsong.mp3';
             </div>
         </div>
 
-        <audio controls id="curSong">
+        <audio id="curSong">
             <source src={ songTest } type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
         <input type = "range" value="0" id="musicBar">
+        <div>
+		    <p><a class="pixelEm"><i>placeholder for SONG TITLE and ARTIST NAME</i></a></p>
+	    </div>
+	</div>
     </div>
 
     <script type="text/javascript">
@@ -52,21 +56,25 @@ import songTest from '../assets/music/songs/testsong.mp3';
                 playpause.classList.add("pauseButton");
             }
         }
+
+        if(song.play()){
+            setInterval(()=>{
+                progress.value = song.currentTime;
+            },500)
+        }
+
+        progress.onchange = function(){
+            song.play();
+            song.currentTime = progress.value;
+            playpause.classList.remove("playButton");
+            playpause.classList.add("pauseButton");
+        }
     </script>
 
 
 
-	<div>
-		<p><a class="pixelEm"><i>placeholder for SONG TITLE and ARTIST NAME</i></a></p>
-	</div>
-	<div>
-		<div class="musicBarBox">
-			<p class="redhatBody">PLACEHOLDER - 0:00</p>
-		</div>
-		<div class="musicBarBox">
-			<p class="redhatBody">PLACEHOLDER - 3:00</p>
-		</div>
-	</div>
+
+
 	<table>
 		<tbody>
 			<tr>
@@ -123,19 +131,20 @@ import songTest from '../assets/music/songs/testsong.mp3';
         justify-content: space-evenly;
         align-items: center;
         padding: 7px;
+        width: 100%;
     }
 	#musicBar {
         -webkit-appearance: none;
-        width: auto;
+        width: 100%;
         height: 6px;
         background: #B9D996; 
         border-radius: 5px;
 
 
-		display: inline-block;
-        /* display: flex;
-        justify-content: space-between; */
-		padding-left: 10px;
+		/* display: inline-block; */
+        display: flex;
+        justify-content: space-between;
+		/* padding-left: 10px; */
 		/* colour of the bar will be green */
 	}
     #musicBar::-webkit-slider-thumb {
