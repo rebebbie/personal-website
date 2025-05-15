@@ -1,6 +1,5 @@
 ---
 import backImg from '../assets/music/back-light.svg';
-import playImg from '../assets/music/play-light.svg';
 import forwImg from '../assets/music/forw-light.svg';
 import muteImg from '../assets/music/mute-light.svg';
 import songTest from '../assets/music/songs/testsong.mp3';
@@ -42,11 +41,15 @@ import songTest from '../assets/music/songs/testsong.mp3';
             // TODO:
             // need to find a way to make this change from playImg to pauseImg...
             // refer to javascript tutorials ... 
-            if(playpause.classList.contains("play-song")){
+            if(playpause.classList.contains("pauseButton")){
                 curSong.pause();
+                playpause.classList.remove("pauseButton");
+                playpause.classList.add("playButton");
             }
             else{
                 curSong.play();
+                playpause.classList.remove("playButton");
+                playpause.classList.add("pauseButton");
             }
         }
     </script>
@@ -103,7 +106,13 @@ import songTest from '../assets/music/songs/testsong.mp3';
 		padding-right: 1em;
 	}
     .playButton {
-        content: {playImg.src};
+        content: url('src/assets/music/play-light.svg');
+		width: 30px;
+		padding-left: 1em;
+		padding-right: 1em;
+    }
+    .pauseButton {
+        content: url('src/assets/music/pause-light.svg');
 		width: 30px;
 		padding-left: 1em;
 		padding-right: 1em;
