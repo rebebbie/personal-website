@@ -1,38 +1,33 @@
 ---
-import backImg from '../assets/music/back-light.svg';
-import forwImg from '../assets/music/forw-light.svg';
-import muteImg from '../assets/music/mute-light.svg';
 import songTest from '../assets/music/songs/testsong.mp3';
-
 ---
 
 <!-- 
 
 PROGRESS AND TODO:
-    - basic single song functionality is good
+    - most functionality is good (might be some minor ux fine tuning left)
     - some styling (spacing etc.) still needs to be adjusted. just details though
-    - NEEDS PLAYLIST FEATURE. currently can only play one song
-
+    - potentially loads slow bc theres hella mb from songs
 -->
 
 <div class="musicPlayer">	
     <div class="musicBarBox">
         <div class="musicControls">
-            <div class="prev-song" onclick="prevSong()">
-                <img src={backImg.src} class="musicButton">
+            <div class="prev-song" onclick="prevSong()" id="playBack">
+                <img class="backButton">
             </div>
             <div class="play-song" onclick="playPauseSong()" id="playPause">
                 <img class="playButton">
             </div>
-            <div class="next-song" onclick="nextSong()">
-                <img src={forwImg.src} class="musicButton">
+            <div class="next-song" onclick="nextSong()" id="playNext">
+                <img class="nextButton">
             </div>
         </div>
         <div>
-		    <p><a class="pixelEm"><i>placeholder for SONG TITLE and ARTIST NAME</i></a></p>
+		    <p><a class="pixelEm" id="songName"><i>placeholder for SONG TITLE and ARTIST NAME</i></a></p>
 	    </div>
         <audio id="curSong">
-            <source src={ songTest } type="audio/mpeg">
+            <source src={ songTest } type="audio/mpeg" id="curSongSrc">
             <p><a class="pixelEm">[Your browser does not support the audio element.]</a></p>
         </audio>
         <input type = "range" value="0" id="musicBar">
@@ -52,20 +47,46 @@ PROGRESS AND TODO:
     <script type="text/javascript">
         let progress = document.getElementById("musicBar");
         let song = document.getElementById("curSong");
+        let songSrc = document.getElementById("curSongSrc");
         let playpause = document.getElementById("playPause");
+        let name = document.getElementById("songName");
         let songMute = document.getElementById("mutePlay");
         let songVol = document.getElementById("volumeBar");
 
+        const songs = [
+            {
+                source: "/src/assets/music/songs/01-dreamboat.mp3",
+                name: "Dream Boat",
+                artist: "Evan(gelina)"
+            },
+            {
+                source: "/src/assets/music/songs/02-goodenough.mp3",
+                name: "Good enough",
+                artist: "Xdinary Heroes"
+            },
+            {
+                source: "/src/assets/music/songs/03-petalsmoon.mp3",
+                name: "Petals on the Moon",
+                artist: "Wasia Project"
+            },
+        ]
+
+        let index = 0;
+        songSrc.src = songs[index].source;
+
         song.onloadedmetadata = function(){
+            console.log("hallo,,,..?");
             // for progress bar to work properly
             progress.max = curSong.duration;
             progress.value = curSong.currentTime;
             playpause.classList.add("playButton");
             
             // audio setup for on-load behaviour 
-            song.volume=0.2; //can remove later
+            song.volume = songVol.value/100;
             songMute.classList.add("muteButton");
             songVol.max = 100;
+
+            name.innerHTML= "<i>" + songs[index].name + " - " + songs[index].artist + "</i>";
         }
 
         function playPauseSong(){
@@ -92,6 +113,23 @@ PROGRESS AND TODO:
                 songMute.classList.remove("speakerButton");
                 songMute.classList.add("muteButton");
             }
+        }
+
+        function nextSong(){
+            index = (index + 1)%songs.length;
+            songSrc.src = songs[index].source;
+            song.load();
+            song.play();
+            playpause.classList.remove("playButton");
+            playpause.classList.add("pauseButton");
+        }
+        function prevSong(){
+            index = (index - 1)%songs.length;
+            songSrc.src = songs[index].source;
+            song.load();
+            song.play();
+            playpause.classList.remove("playButton");
+            playpause.classList.add("pauseButton");
         }
 
         if(song.play()){
@@ -151,6 +189,18 @@ PROGRESS AND TODO:
     }
     .pauseButton {
         content: url('src/assets/music/pause-light.svg');
+		width: 30px;
+		padding-left: 1em;
+		padding-right: 1em;
+    }
+    .backButton {
+        content: url('src/assets/music/back-light.svg');
+		width: 30px;
+		padding-left: 1em;
+		padding-right: 1em;
+    }
+    .nextButton {
+        content: url('src/assets/music/forw-light.svg');
 		width: 30px;
 		padding-left: 1em;
 		padding-right: 1em;
