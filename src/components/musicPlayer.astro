@@ -106,7 +106,7 @@ PROGRESS AND TODO:
             },
             {
                 source: "/src/assets/music/songs/10-spaceoddity.mp3",
-                name: "Space Oddity - 2015 Remaster",
+                name: "Space Oddity (2015 Remaster)",
                 artist: "David Bowie"
             },
             {
@@ -140,7 +140,6 @@ PROGRESS AND TODO:
         songSrc.src = songs[index].source;
 
         song.onloadedmetadata = function(){
-            console.log("hallo,,,..?");
             // for progress bar to work properly
             progress.max = curSong.duration;
             progress.value = curSong.currentTime;
@@ -200,6 +199,9 @@ PROGRESS AND TODO:
         if(song.play()){
             setInterval(()=>{
                 progress.value = song.currentTime;
+                if((progress.max-progress.value)<1){
+                    nextSong();
+                }
             },500)
         }
 

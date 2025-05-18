@@ -2,6 +2,7 @@
 import Bubble from '../components/cursorTrail.astro';
 import fishImg from '../assets/sketchy_fish.svg';
 import Music from '../components/musicPlayer.astro';
+import Terminal from '../components/terminal.astro';
 ---
 
 <!doctype html>
@@ -27,9 +28,7 @@ import Music from '../components/musicPlayer.astro';
 		<p class="redhatBody">
 			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque non elit eu felis ultrices bibendum. Vestibulum quis placerat dolor. Mauris sed ipsum eu mauris vestibulum ultricies sit amet quis ipsum. Pellentesque ex nibh, aliquet accumsan ligula ullamcorper, fringilla efficitur sapien. Praesent in ex diam. Praesent sed est ac sapien mollis varius eget vitae lacus. Nulla condimentum enim sit amet magna pulvinar dignissim. Duis leo velit, gravida sit amet est rutrum, ornare dictum nulla. Mauris pharetra in risus at sollicitudin. Quisque scelerisque, dolor eu efficitur convallis, augue erat faucibus neque, at lobortis nisi urna sit amet tortor. In rhoncus libero orci, pretium imperdiet mi porta sed. Aenean vehicula id ante eget blandit. Vestibulum vitae nibh laoreet orci consequat laoreet. Aenean efficitur lacus lacus, at lobortis arcu tincidunt ut.
 		</p>
-		<div class="console">
-			<p class="pixelCons">fjdsakl</p>
-		</div>
+		<Terminal />
 	</div>
 	<div class="col-3">
 		<img src={fishImg.src} class="flipScaleImg">
@@ -99,16 +98,6 @@ import Music from '../components/musicPlayer.astro';
 		font-weight: normal;
 		color: #111827;
 		font-size: 20px;
-	}
-
-	.console {
-		background-color: black;
-		border-style: solid;
-		border-width: 2px;
-		border-radius: 8px;
-		border-color: #81559B;
-		padding: 10px;
-		margin-top: 10px;
 	}
 
 	p {

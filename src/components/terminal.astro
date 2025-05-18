@@ -1,0 +1,95 @@
+---
+
+---
+<div class="console" id="consoleID">
+    <p class="pixelCons">
+        Type <a class="pixelCode">help</a> for a list of commands.
+    </p>
+    <!-- here there will be a dark purple > mark automatically put in at the start of each line -->
+    <!-- and the text that user is entering will be in light purple, in the same font -->
+    <!-- modify pixelCons font to look a little vertically "squished", as well as be monospaced if possible -->
+
+
+    <div class="command" id="cmdLine">
+        <span>&gt; </span>
+        <input type="text" class="terminal-input" id="userInput" value="">
+            <!-- <span id="userEntry">fdjskalfdjskal</span> -->
+    </div>
+
+    <!-- <input type="text" id="userInputText" value=""> -->
+</div>
+
+<script type="text/javascript">
+    let cmd = document.getElementById("cmdLine");
+    let userinput = document.getElementById("userInput");
+    let consoleBox = document.getElementById("consoleID");
+    let command = "";
+
+    window.addEventListener("keypress", userType);
+
+    function userType(e){
+        if (e.key === "Enter") {
+            command=userinput.value;
+            // TODO: create a new cmdLine div
+            createNewInputLine();
+        }
+    }
+
+    function createNewInputLine(){
+        let newLine = document.createElement("div");
+        let newSpan = document.createElement("span");
+        let newContent = document.createElement("input");
+
+        newContent.type="text";
+        newContent.classList.add("terminal-input");
+        newContent.id = "userInput";
+        newSpan.innerHTML="&gt; "; 
+        newLine.classList.add("command");
+        newLine.id = "cmdLine";
+        newLine.appendChild(newSpan);
+        newLine.appendChild(newContent);
+        consoleBox.appendChild(newLine);
+        console.log("added a div to thingy");
+    }
+
+
+
+
+</script>
+
+
+<style>
+    p.pixelCons {
+		font-family: "pixelHeader", Verdana, Tahoma;
+		font-size: 20px;
+		color: #81559B;
+		text-align: left;
+	}
+	a.pixelCode {
+		font-family: "pixelHeader", Verdana, Tahoma;
+		font-size: 20px;
+		color: #E0D3DE;
+		text-align: left;
+		filter: drop-shadow(0px 0px 10px #E0D3DE);
+	}
+	.console {
+		background-color: black;
+		border-style: solid;
+		border-width: 2px;
+		border-radius: 8px;
+		border-color: #81559B;
+		padding: 10px;
+		margin-top: 10px;
+	}
+    #userInputText{
+        -webkit-appearance: none;
+        border: none;
+        background: black;
+    }
+    .command{
+        color: white;
+        text-align: left;
+        
+    }
+
+</style>
