@@ -1,55 +1,134 @@
 ---
 
 ---
+
+<!-- 
+    - TODO: fix some UI/UX stuff to be smoother
+    - add all other functions.. only 'help' is done rn
+    - see if that blinking &nbsp; can be made to work
+    - it doesn't quite look like a cmd duplicate yet. fix > thing to look better
+    - make the descriptions in help table darker
+-->
+
 <div class="console" id="consoleID">
     <p class="pixelCons">
         Type <a class="pixelCode">help</a> for a list of commands.
     </p>
-    <!-- here there will be a dark purple > mark automatically put in at the start of each line -->
-    <!-- and the text that user is entering will be in light purple, in the same font -->
-    <!-- modify pixelCons font to look a little vertically "squished", as well as be monospaced if possible -->
-
-
-    <div class="command" id="cmdLine">
-        <span>&gt; </span>
-        <input type="text" class="terminal-input" id="userInput" value="">
-            <!-- <span id="userEntry">fdjskalfdjskal</span> -->
-    </div>
-
-    <!-- <input type="text" id="userInputText" value=""> -->
 </div>
 
 <script type="text/javascript">
-    let cmd = document.getElementById("cmdLine");
-    let userinput = document.getElementById("userInput");
+    // let cmd = document.getElementById("cmdLine");
+    let userinput;
     let consoleBox = document.getElementById("consoleID");
-    let command = "";
+    let commandStr = "";
+    let cmdIndex = 0;
 
-    window.addEventListener("keypress", userType);
+    const cmdList={ 
+        "help":{
+            cmdDesc: "You are here!",
+            run: function() {
+                var helpTable = document.createElement("TABLE");
+                helpTable.style.textAlign="left";
+                helpTable.classList.add("cmdHelpTable");
+                var row;
+                var col1, col2;
+                for(item in cmdList){
+                    row = document.createElement("TR");
+                    helpTable.appendChild(row);
+                    col1 = document.createElement("TD");
+                    col1.style.width = "30%";
+                    col1.innerHTML = item;
+                    col1.classList.add("cmdHelpTableName");
+                    col2 = document.createElement("TD");
+                    col2.innerHTML = cmdList[item].cmdDesc;
+                    row.appendChild(col1);
+                    row.appendChild(col2);
+                }
+                consoleBox.appendChild(helpTable);
+                console.log("help function ran");
+            }
+        }, 
+        "contact":{
+            cmdDesc: "A list of my contacts",
+            run: function() {
+                 console.log("contact function ran");
+            }
+        }, 
+        "resume":{
+            cmdDesc: "Download my resume",
+            run: function() {
+                 console.log("resume function ran");
+            }
+        },  
+        "skills":{
+            cmdDesc: "View a summary of my skills",
+            run: function() {
+                 console.log("skills function ran");
+            }
+        },
+        "mainpage data":{
+            cmdDesc: "Enter the homepage for my Data Science Portfolio Website",
+            run: function() {
+                 console.log("mainpage function ran");
+            }
+        }
+    };
+
+    window.addEventListener("load", loadFirstCmd);
+
+    function loadFirstCmd(){
+        createNewInputLine();
+        userinput = document.getElementById("userInput0");
+        userinput.focus();
+        userinput.addEventListener("keypress", userType);
+    }
 
     function userType(e){
         if (e.key === "Enter") {
-            command=userinput.value;
-            // TODO: create a new cmdLine div
+            commandStr=userinput.value;
+            checkCommand();
             createNewInputLine();
-        }
-    }
+            userinput.focus();
+            userinput.addEventListener("keypress", userType);
+        } 
+    } 
 
     function createNewInputLine(){
         let newLine = document.createElement("div");
         let newSpan = document.createElement("span");
         let newContent = document.createElement("input");
+        let newSpan2 = document.createElement("span");
 
         newContent.type="text";
         newContent.classList.add("terminal-input");
-        newContent.id = "userInput";
+        newContent.id = "userInput"+cmdIndex;
+        newContent.value="";
+
         newSpan.innerHTML="&gt; "; 
+        // newSpan2.innerHTML="&nbsp;";
+
         newLine.classList.add("command");
-        newLine.id = "cmdLine";
+        newLine.id = "cmdLine"+cmdIndex;
         newLine.appendChild(newSpan);
         newLine.appendChild(newContent);
+        // newLine.appendChild(newSpan2);
+
         consoleBox.appendChild(newLine);
-        console.log("added a div to thingy");
+        userinput = document.getElementById("userInput"+cmdIndex);
+        cmdIndex++;
+    }
+
+    function checkCommand(){
+        commandStr = commandStr.trim().toLowerCase();
+        
+        if(commandStr in cmdList){
+            let currCmd = cmdList[commandStr];
+            currCmd.run();
+        }
+        else{
+            // no command print
+            console.log("nop");
+        }
     }
 
 
@@ -80,16 +159,12 @@
 		border-color: #81559B;
 		padding: 10px;
 		margin-top: 10px;
+        margin-bottom: 20px;
 	}
     #userInputText{
         -webkit-appearance: none;
         border: none;
         background: black;
-    }
-    .command{
-        color: white;
-        text-align: left;
-        
     }
 
 </style>
