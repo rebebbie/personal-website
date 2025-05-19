@@ -65,12 +65,12 @@ p.pixelH {
 .terminal-input:focus{
 	outline:none;
 }
-.cmdHelpTable{
+.cmdTable{
 	font-family: "pixelHeader", Verdana, Tahoma;
 	color: #E0D3DE;
 	border: none;
 }
-.cmdHelpTableName{
+.cmdTableName{
 	filter: drop-shadow(0px 0px 3px #E0D3DE); 
 }
 

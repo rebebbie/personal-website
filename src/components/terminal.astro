@@ -27,18 +27,18 @@
         "help":{
             cmdDesc: "You are here!",
             run: function() {
-                var helpTable = document.createElement("TABLE");
+                let helpTable = document.createElement("TABLE");
                 helpTable.style.textAlign="left";
-                helpTable.classList.add("cmdHelpTable");
-                var row;
-                var col1, col2;
+                helpTable.classList.add("cmdTable");
+                let row;
+                let col1, col2;
                 for(item in cmdList){
                     row = document.createElement("TR");
                     helpTable.appendChild(row);
                     col1 = document.createElement("TD");
                     col1.style.width = "30%";
                     col1.innerHTML = item;
-                    col1.classList.add("cmdHelpTableName");
+                    col1.classList.add("cmdTableName");
                     col2 = document.createElement("TD");
                     col2.innerHTML = cmdList[item].cmdDesc;
                     row.appendChild(col1);
@@ -50,7 +50,32 @@
         }, 
         "contact":{
             cmdDesc: "A list of my contacts",
-            run: function() {
+            run: function() {                
+                let contTable = document.createElement("TABLE");
+                contTable.style.textAlign="left";
+                contTable.classList.add("cmdTable");
+                let row;
+                let col1, col2;
+
+                let socialList = [
+                    ["Email                 ", "<a class=\"pixelEm\">insert link here</a>"],
+                    ["LinkedIn", "<a class=\"pixelEm\">insert link here</a>"],
+                    ["GitHub", "<a class=\"pixelEm\">insert link here</a>"]
+                ]
+
+                for(item of socialList){
+                    row = document.createElement("TR");
+                    contTable.appendChild(row);
+                    col1 = document.createElement("TD");
+                    col1.style.width = "30%";
+                    col1.innerHTML = item[0];
+                    col1.classList.add("cmdTableName");
+                    col2 = document.createElement("TD");
+                    col2.innerHTML = item[1];
+                    row.appendChild(col1);
+                    row.appendChild(col2);
+                }
+                consoleBox.appendChild(contTable);
                  console.log("contact function ran");
             }
         }, 
