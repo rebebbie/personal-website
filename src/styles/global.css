@@ -107,6 +107,10 @@ a.pixelCode {
 	width: 100%;
 	font-size:20px;
 }
+.cmdTable::selection{
+	background-color: transparent;
+	color: #B9D996;
+}
 .cmdTableName{
 	filter: drop-shadow(0px 0px 3px #E0D3DE); 
 }
