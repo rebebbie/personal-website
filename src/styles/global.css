@@ -50,12 +50,15 @@ p.pixelH {
 	color: #81559B;
 }
 
-.command{
+.command{ 
 	color: white;
 	text-align: left;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 .terminal-input{
-	background: black;
+	/* background: black; */
+	background: white;
 	border: none;
 	color: #E0D3DE;
 	font-family: "pixelHeader", Verdana, Tahoma;
@@ -65,10 +68,46 @@ p.pixelH {
 .terminal-input:focus{
 	outline:none;
 }
+.terminal-input::after{ 
+	content: "";
+	width: 50px;
+	height: 20px;
+	background: #E0D3DE;
+	display: inline-block;
+}
+p.pixelCons {
+	font-family: "pixelHeader", Verdana, Tahoma;
+	font-size: 20px;
+	color: #81559B;
+	text-align: left; 
+}
+a.pixelCode {
+	font-family: "pixelHeader", Verdana, Tahoma;
+	font-size: 20px;
+	color: #E0D3DE;
+	text-align: left;
+	filter: drop-shadow(0px 0px 10px #E0D3DE);
+}
+.console {
+	background-color: black;
+	border-style: solid;
+	border-width: 2px;
+	border-radius: 8px; 
+	border-color: #81559B;
+	padding-left: 20px; 
+	padding-right: 20px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
 .cmdTable{
 	font-family: "pixelHeader", Verdana, Tahoma;
 	color: #E0D3DE;
 	border: none;
+	width: 100%;
+	font-size:20px;
+}
+.cmdTableName{
+	filter: drop-shadow(0px 0px 3px #E0D3DE); 
 }
 .cmdTableName{
 	filter: drop-shadow(0px 0px 3px #E0D3DE); 
