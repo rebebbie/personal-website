@@ -8,6 +8,7 @@ PROGRESS AND TODO:
     - most functionality is good (might be some minor ux fine tuning left)
     - some styling (spacing etc.) still needs to be adjusted. just details though
     - potentially loads slow bc theres hella mb from songs
+    - make bar sticky
 -->
 
 <div class="musicPlayer">	
@@ -237,11 +238,19 @@ PROGRESS AND TODO:
    		display: flex;
         justify-content: space-between;
         align-content: flex;
+        /* TODO: WTF NO WORK */
+        position: sticky;
 	}
     .musicControls{
         display: flex;
+        height: 55px;
         justify-content: center;
         align-items: center;
+        border: solid #E0D3DE;
+        border-radius: 10px;
+    }
+    .musicControls:nth-child(2){
+        transform: scale(2.5);
     }
 	.musicButton{
 		width: 30px;
@@ -250,25 +259,27 @@ PROGRESS AND TODO:
 	}
     .playButton {
         content: url('src/assets/music/play-light.svg');
-		width: 30px;
+		/* width: 30px; */
+        height: 38px;
+        margin: 10px 0px 10px 0px;
 		padding-left: 1em;
 		padding-right: 1em;
     }
     .pauseButton {
         content: url('src/assets/music/pause-light.svg');
-		width: 30px;
+		width: 38px;
 		padding-left: 1em;
 		padding-right: 1em;
     }
     .backButton {
         content: url('src/assets/music/back-light.svg');
-		width: 30px;
+		width: 25px;
 		padding-left: 1em;
 		padding-right: 1em;
     }
     .nextButton {
         content: url('src/assets/music/forw-light.svg');
-		width: 30px;
+		width: 25px;
 		padding-left: 1em;
 		padding-right: 1em;
     }

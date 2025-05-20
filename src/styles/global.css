@@ -53,32 +53,55 @@ p.pixelH {
 .command{ 
 	color: white;
 	text-align: left;
+	height: auto;
+	display: flex;
+	align-items: center;
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
 .terminal-input{
 	background: black;
 	/* background: white; */
+	width: 100%;
 	border: none;
 	color: #E0D3DE;
 	font-family: "pixelHeader", Verdana, Tahoma;
 	font-size: 20px;
+	text-wrap: wrap; 
 	cursor: url("../assets/cursor/textLight.cur"), auto;
 }
 .terminal-input:focus{
 	outline:none;
 }
-.terminal-input::after{ 
-	content: "jfdksa";
-	width: 50px;
-	height: 20px; 
+/* .terminal-input::after{ 
+	content: "";
+	width: 8px;
+	height: 15px; 
+	margin-left: 1px;
 	background: #E0D3DE;
 	display: inline-block;
-	z-index: 5000;
+	animation: cursor-blink2 1.5s steps(1) infinite;
+} */
+.blinking-cursor{
+	content: "";
+	width: 8px;
+	height: 15px; 
+	margin-left: 1px;
+	background: #E0D3DE;
+	display: inline-block;
+	animation: cursor-blink2 1.5s steps(1) infinite;
+}
+.user-input{
+	/* display: inline; */
+	/* display: inline-flex; */
+	height:20px;
+	color: #E0D3DE;
+	vertical-align: middle;
+	display: inline-block;
 }
 p.pixelCons {
 	font-family: "pixelHeader", Verdana, Tahoma;
-	font-size: 20px;
+	font-size: 18px;
 	color: #81559B;
 	text-align: left; 
 }
@@ -105,7 +128,7 @@ a.pixelCode {
 	color: #E0D3DE;
 	border: none;
 	width: 100%;
-	font-size:20px;
+	font-size:18px;
 }
 .cmdTable::selection{
 	background-color: transparent;
@@ -131,6 +154,11 @@ p {
 }
 
 p::selection{
+	background-color: transparent;
+	color: #B9D996;
+}
+
+h1::selection{
 	background-color: transparent;
 	color: #B9D996;
 }
@@ -209,4 +237,17 @@ img {
 
 .col-auto {
 	flex: 1;
+}
+
+@keyframes cursor-blink {
+  0% {
+    opacity: 0;
+  }
+}
+
+@keyframes cursor-blink2{
+	0%   {
+		background-color: black;
+	}
+	50% {background-color: #E0D3DE;}
 }
