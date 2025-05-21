@@ -14,18 +14,18 @@ PROGRESS AND TODO:
 <div class="musicPlayer">	
     <div class="musicBarBox">
         <div class="musicControls">
-            <div class="prev-song" onclick="prevSong()" id="playBack">
+            <button class="prev-song-btn" onclick="prevSong()" id="playBack">
                 <img class="backButton">
-            </div>
-            <div class="play-song" onclick="playPauseSong()" id="playPause">
-                <img class="playButton">
-            </div>
-            <div class="next-song" onclick="nextSong()" id="playNext">
+            </button>
+            <button class="play-song-btn" onclick="playPauseSong()">
+                <img class="playButton"  id="playPause">
+            </button>
+            <button class="next-song-btn" onclick="nextSong()" id="playNext">
                 <img class="nextButton">
-            </div>
+            </button>
         </div>
         <div>
-		    <p><a class="pixelEm" id="songName"><i>placeholder for SONG TITLE and ARTIST NAME</i></a></p>
+		    <p class="songNameTitle"><a class="pixelEm" id="songName"><i>placeholder for SONG TITLE and ARTIST NAME</i></a></p>
 	    </div>
         <audio id="curSong">
             <source src={ songTest } type="audio/mpeg" id="curSongSrc">
@@ -189,7 +189,7 @@ PROGRESS AND TODO:
             playpause.classList.add("pauseButton");
         }
         function prevSong(){
-            index = (index - 1)%songs.length;
+            index = Math.max((index - 1)%songs.length,0);
             songSrc.src = songs[index].source;
             song.load();
             song.play();
@@ -232,22 +232,20 @@ PROGRESS AND TODO:
 <style>
 	.musicPlayer {
 		width: 100%;
-		height: 70px;
-		left: 0;
-		padding-bottom: 30px;
+		height: 50px;
+		padding: 10px 0px 20px 0px;
    		display: flex;
-        justify-content: space-between;
-        align-content: flex;
+        justify-content: center;
+        align-content: center;
         /* TODO: WTF NO WORK */
         position: sticky;
 	}
     .musicControls{
         display: flex;
-        height: 55px;
-        justify-content: center;
+        height: 35px;
         align-items: center;
-        border: solid #E0D3DE;
-        border-radius: 10px;
+        /* border: solid #E0D3DE; */
+        /* border-radius: 10px; */
     }
     .musicControls:nth-child(2){
         transform: scale(2.5);
@@ -261,7 +259,6 @@ PROGRESS AND TODO:
         content: url('src/assets/music/play-light.svg');
 		/* width: 30px; */
         height: 38px;
-        margin: 10px 0px 10px 0px;
 		padding-left: 1em;
 		padding-right: 1em;
     }
@@ -271,15 +268,58 @@ PROGRESS AND TODO:
 		padding-left: 1em;
 		padding-right: 1em;
     }
+    .prev-song-btn{
+		width: 100%;
+        height: 100%;
+        outline: none;
+        border: none;
+        background:transparent;
+    }
+    .prev-song-btn:hover {
+        transform: scale(1.25);
+        filter: drop-shadow(0px 0px 10px #E0D3DE);
+    }
+    .prev-song-btn:active {
+        transform: translateY(2px);
+    }
+    .next-song-btn{
+		width: 100%;
+        height: 100%;
+        outline: none;
+        border: none;
+        background:transparent;
+    }
+    .next-song-btn:hover {
+        transform: scale(1.25);
+        filter: drop-shadow(0px 0px 10px #E0D3DE);
+    }
+    .next-song-btn:active {
+        transform: translateY(2px);
+    }
+    .play-song-btn{
+		width: 100%;
+        height: 100%;
+        outline: none;
+        border: none;
+        background:transparent;
+    }
+    .play-song-btn:hover {
+        transform: scale(1.25);
+        filter: drop-shadow(0px 0px 10px #E0D3DE);
+    }
+    .play-song-btn:active {
+        transform: translateY(2px);
+    }
     .backButton {
         content: url('src/assets/music/back-light.svg');
-		width: 25px;
+		width: 30px;
 		padding-left: 1em;
 		padding-right: 1em;
+        filter: drop-shadow(-1px 1px 0 #81559B);
     }
     .nextButton {
         content: url('src/assets/music/forw-light.svg');
-		width: 25px;
+		width: 30px;
 		padding-left: 1em;
 		padding-right: 1em;
     }
@@ -298,17 +338,23 @@ PROGRESS AND TODO:
     .musicBarBox {
         background: transparent;
         display: flex;
-        justify-content: space-evenly;
+        justify-content: center;
+        border: solid #81559B;
+        border-radius: 20px;
         align-items: center;
         padding: 7px;
-        width: 100%;
+        width: 70%;
+        position: sticky;
     }
 	#musicBar {
         -webkit-appearance: none;
-        width: 50%;
+        /* width: 35%; */
+        width: auto;
+        min-width: 30%;
         height: 6px;
         background: #B9D996; 
         border-radius: 5px;
+        margin: 10px;
 		cursor: url("../assets/cursor/normalLight.cur"), auto;
         display: flex;
         justify-content: space-evenly;
@@ -338,5 +384,10 @@ PROGRESS AND TODO:
         margin-left: -10px;
         width:30px;
         height:20px;
+    }
+    .songNameTitle{
+        width:180px;
+        border-radius: 15px;
+        line-height: 0.75em;
     }
 </style>
