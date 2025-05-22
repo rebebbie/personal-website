@@ -1,188 +1,397 @@
 ---
-
+import songTest from '../assets/music/songs/testsong.mp3';
 ---
 
 <!-- 
-    - TODO: fix some UI/UX stuff to be smoother
-    - add all other functions.. only 'help' is done rn
-    - see if that blinking &nbsp; can be made to work
-    - it doesn't quite look like a cmd duplicate yet. fix > thing to look better
-    - make the descriptions in help table darker
+
+PROGRESS AND TODO:
+    - most functionality is good (might be some minor ux fine tuning left)
+    - some styling (spacing etc.) still needs to be adjusted. just details though
+    - potentially loads slow bc theres hella mb from songs
+    - make bar sticky
 -->
 
-<div class="console" id="consoleID" onclick="focusInputLine()">
-    <p class="pixelCons">
-        Type <a class="pixelCode">help</a> for a list of commands. 
-    </p>
+<div class="musicPlayer">	
+    <div class="musicBarBox">
+        <div class="musicControls">
+            <button class="prev-song-btn" onclick="prevSong()" id="playBack">
+                <img class="backButton">
+            </button>
+            <button class="play-song-btn" onclick="playPauseSong()">
+                <img class="playButton"  id="playPause">
+            </button>
+            <button class="next-song-btn" onclick="nextSong()" id="playNext">
+                <img class="nextButton">
+            </button>
+        </div>
+        <div>
+		    <p class="songNameTitle"><a class="pixelEm" id="songName"><i></i></a></p>
+	    </div>
+        <audio id="curSong">
+            <source src={ songTest } type="audio/mpeg" id="curSongSrc">
+            <p><a class="pixelEm">[Your browser does not support the audio element.]</a></p>
+        </audio>
+        <input type = "range" value="0" id="musicBar">
+
+        <div class="musicControls">
+            <div class="mute-song" onclick="mutePlaySong()" id="mutePlay">
+                <!-- NOTE: I switched the mute and speaker button names -->
+                <!-- so muteButton has the asset for speaker and vice versa -->
+                <!-- it was a little bit of shoddy code but eh it works -->
+                <img class="muteButton">
+            </div>
+        </div>
+        <input type = "range" value="20" id="volumeBar">
+	</div>
+    </div>
+
+    <script type="text/javascript">
+        let progress = document.getElementById("musicBar");
+        let song = document.getElementById("curSong");
+        let songSrc = document.getElementById("curSongSrc");
+        let playpause = document.getElementById("playPause");
+        let name = document.getElementById("songName");
+        let songMute = document.getElementById("mutePlay");
+        let songVol = document.getElementById("volumeBar");
+
+        const songs = [
+            {
+                source: "/src/assets/music/songs/test.mp3",
+                name: "temp song",
+                artist: "temp artist"
+            },
+            {
+                source: "/src/assets/music/songs/01-dreamboat.mp3",
+                name: "Dream Boat",
+                artist: "Evan(gelina)"
+            },
+            {
+                source: "/src/assets/music/songs/02-goodenough.mp3",
+                name: "Good enough",
+                artist: "Xdinary Heroes"
+            },
+            {
+                source: "/src/assets/music/songs/03-petalsmoon.mp3",
+                name: "Petals on the Moon",
+                artist: "Wasia Project"
+            },
+            {
+                source: "/src/assets/music/songs/04-dirtychai.mp3",
+                name: "Dirty Chai",
+                artist: "Sunset Arcade"
+            },
+            {
+                source: "/src/assets/music/songs/05-lovewins.mp3",
+                name: "Love wins all",
+                artist: "IU"
+            },
+            {
+                source: "/src/assets/music/songs/06-manhattan.mp3",
+                name: "Manhattan-Kaboul",
+                artist: "Renaud, Axelle Red"
+            },
+            {
+                source: "/src/assets/music/songs/07-contemplate.mp3",
+                name: "Contemplate",
+                artist: "Funk Fiction"
+            },
+            {
+                source: "/src/assets/music/songs/08-danser.mp3",
+                name: "je sais pas danser",
+                artist: "Pomme"
+            },
+            {
+                source: "/src/assets/music/songs/09-sofia.mp3",
+                name: "Sofia",
+                artist: "Clairo"
+            },
+            {
+                source: "/src/assets/music/songs/10-spaceoddity.mp3",
+                name: "Space Oddity (2015 Remaster)",
+                artist: "David Bowie"
+            },
+            {
+                source: "/src/assets/music/songs/11-nothingelse.mp3",
+                name: "nothing else i could do",
+                artist: "ella jane"
+            },
+            {
+                source: "/src/assets/music/songs/12-fuzzydisco.mp3",
+                name: "Fuzzy Disco",
+                artist: "Talkie"
+            },
+            {
+                source: "/src/assets/music/songs/13-knowme.mp3",
+                name: "Know me",
+                artist: "GEMINI"
+            },
+            {
+                source: "/src/assets/music/songs/14-everythinggoes.mp3",
+                name: "Everything Goes On",
+                artist: "Porter Robinson, League of Legends"
+            },
+            {
+                source: "/src/assets/music/songs/15-buttons.mp3",
+                name: "buttons",
+                artist: "Lyn Lapid"
+            }
+        ]
+
+        let index = 0;
+        songSrc.src = songs[index].source;
+
+        song.onloadedmetadata = function(){
+            // for progress bar to work properly
+            progress.max = curSong.duration;
+            progress.value = curSong.currentTime;
+            playpause.classList.add("playButton");
+            
+            // audio setup for on-load behaviour 
+            song.volume = songVol.value/100;
+            songMute.classList.add("muteButton");
+            songVol.max = 100;
+
+            name.innerHTML= "<i>" + songs[index].name + " - " + songs[index].artist + "</i>";
+        }
+
+        function playPauseSong(){
+            if(playpause.classList.contains("pauseButton")){
+                song.pause();
+                playpause.classList.remove("pauseButton");
+                playpause.classList.add("playButton");
+            }
+            else{
+                song.play();
+                playpause.classList.remove("playButton");
+                playpause.classList.add("pauseButton");
+            }
+        }
+
+        function mutePlaySong(){
+            if(songMute.classList.contains("muteButton")){
+                song.volume = 0;
+                songMute.classList.remove("muteButton");
+                songMute.classList.add("speakerButton");
+            }
+            else{
+                song.volume = songVol.value/100;
+                songMute.classList.remove("speakerButton");
+                songMute.classList.add("muteButton");
+            }
+        }
+
+        function nextSong(){
+            index = (index + 1)%songs.length;
+            songSrc.src = songs[index].source;
+            song.load();
+            song.play();
+            playpause.classList.remove("playButton");
+            playpause.classList.add("pauseButton");
+        }
+        function prevSong(){
+            index = Math.max((index - 1)%songs.length,0);
+            songSrc.src = songs[index].source;
+            song.load();
+            song.play();
+            playpause.classList.remove("playButton");
+            playpause.classList.add("pauseButton");
+        }
+
+        if(song.play()){
+            setInterval(()=>{
+                progress.value = song.currentTime;
+                if((progress.max-progress.value)<1){
+                    nextSong();
+                }
+            },500)
+        }
+
+        progress.onchange = function(){
+            song.play();
+            song.currentTime = progress.value;
+            playpause.classList.remove("playButton");
+            playpause.classList.add("pauseButton");
+        }
+
+        songVol.onchange = function(){
+            if(songVol.value<=2){
+                song.volume = 0;
+                songMute.classList.remove("muteButton");
+                songMute.classList.add("speakerButton");
+            }
+            else{
+                song.volume=songVol.value/100;
+                songMute.classList.remove("speakerButton");
+                songMute.classList.add("muteButton");
+            }
+        }
+    </script>
+
 </div>
 
-<script type="text/javascript">
-    // let cmd = document.getElementById("cmdLine");
-    let userinput;
-    let consoleBox = document.getElementById("consoleID");
-    let commandStr = "";
-    let cmdIndex = 0;
-
-    const cmdList={ 
-        "help":{
-            cmdDesc: "You are here!",
-            run: function() {
-                let helpTable = document.createElement("TABLE");
-                helpTable.style.textAlign="left";
-                helpTable.classList.add("cmdTable");
-                let row;
-                let col1, col2;
-                for(item in cmdList){
-                    row = document.createElement("TR");
-                    helpTable.appendChild(row);
-                    col1 = document.createElement("TD");
-                    col1.style.width = "30%";
-                    col1.innerHTML = item;
-                    col1.classList.add("cmdTableName");
-                    col2 = document.createElement("TD");
-                    col2.style.color = "#81559B";
-                    col2.innerHTML = cmdList[item].cmdDesc;
-                    row.appendChild(col1);
-                    row.appendChild(col2);
-                }
-                consoleBox.appendChild(helpTable);
-            }
-        }, 
-        "contact":{
-            cmdDesc: "A list of my contacts",
-            run: function() {                
-                let contTable = document.createElement("TABLE");
-                contTable.style.textAlign="left";
-                contTable.classList.add("cmdTable");
-                let row;
-                let col1, col2;
-
-                let socialList = [
-                    ["Email", "<a class='pixelEm' href='mailto:rebeccarh228@gmail.com' target='_blank'>Send me an <b>Email</b> at RebeccaRH228@gmail.com</a>"],
-                    ["LinkedIn", "<a class='pixelEm' href='https://www.linkedin.com/in/rebecca-ruoxi-han/' target='_blank'>View my <b>LinkedIn</b> profile</a>"],
-                    ["GitHub", "<a class='pixelEm' href='https://github.com/rebebbie' target='_blank'>View my projects on <b>GitHub</b></a>"]
-                ]
-
-                for(item of socialList){ 
-                    row = document.createElement("TR");
-                    contTable.appendChild(row);
-                    col1 = document.createElement("TD");
-                    col1.style.width = "30%";
-                    col1.innerHTML = item[0];
-                    col1.classList.add("cmdTableName");
-                    col2 = document.createElement("TD");
-                    col2.innerHTML = item[1];
-                    row.appendChild(col1);
-                    row.appendChild(col2);
-                }
-                consoleBox.appendChild(contTable);
-            }
-        }, 
-        "resume":{
-            cmdDesc: "Download my resume",
-            run: function() {
-                let rlink = document.createElement("a");
-                rlink.href="src/assets/resume.pdf";
-                rlink.download = "Rebecca Han Resume";
-                consoleBox.appendChild(rlink);
-                // let rlink = document.getElementById("resumeLink");
-                rlink.click();
-                rlink.remove();
-            }
-        },  
-        "skills":{
-            cmdDesc: "View a summary of my skills",
-            run: function() {
-                 console.log("skills function ran");
-            }
-        },
-        "mainpage data":{
-            cmdDesc: "Enter the homepage for my Data Science Portfolio Website",
-            run: function() {
-                 console.log("mainpage function ran");
-            }
-        }
-    };
-
-    window.addEventListener("load", loadFirstCmd);
-
-    function loadFirstCmd(){
-        createNewInputLine();
-        userinput = document.getElementById("userInput0");
-        userinput.focus();
-        userinput.addEventListener("keypress", userType);
-    }
-
-    function userType(e){
-        if (e.key === "Enter") {
-            commandStr=userinput.value;
-            checkCommand();
-            createNewInputLine();
-            userinput.focus();
-            userinput.addEventListener("keypress", userType);
-        } 
-    } 
-
-    function createNewInputLine(){
-        let newLine = document.createElement("div");
-        let newSpan = document.createElement("span");
-        let newContent = document.createElement("input");
-        let newSpan2 = document.createElement("span");
-
-        newContent.type="text";
-        newContent.classList.add("terminal-input");
-        newContent.id = "userInput"+cmdIndex;
-        newContent.value="";
-        newContent.autocomplete = "off";
-        newContent.spellcheck = "false";
-        newContent.width = "fit-content";
-
-        newSpan.innerHTML="&gt; ";  
-        // newSpan2.innerHTML="&nbsp;";
-
-        newLine.classList.add("command");
-        newLine.id = "cmdLine"+cmdIndex;
-        newLine.appendChild(newSpan);
-        newLine.appendChild(newContent);
-        newLine.appendChild(newSpan2);
-
-        consoleBox.appendChild(newLine);
-        userinput = document.getElementById("userInput"+cmdIndex);
-        cmdIndex++;
-    }
-
-    function checkCommand(){
-        commandStr = commandStr.trim().toLowerCase();
-        
-        if(commandStr in cmdList){
-            let currCmd = cmdList[commandStr];
-            currCmd.run();
-        }
-        else{
-            // no command print
-            let noCmdFoundMsg = document.createElement("div");
-            noCmdFoundMsg.innerHTML = "<p class='pixelCons'>Command not recognized. Please type <a class='pixelCode'>help</a> for a list of commands!</p>";
-            consoleBox.appendChild(noCmdFoundMsg);
-            console.log("nop");
-        }
-    }
-
-    function focusInputLine(){
-        userinput.focus();
-    }
-
-
-
-
-</script>
-
-
 <style>
-
-#userInputText{
-	-webkit-appearance: none;
-	border: none;
-	background: black;
-}
-
+	.musicPlayer {
+		width: 100%;
+		height: 50px;
+        /* position: fixed;
+		bottom: 0; */
+		padding: 10px 0px 20px 0px;
+        margin-top: 10px;
+   		display: flex;
+        justify-content: center;
+        align-content: center;
+	}
+    .musicControls{
+        display: flex;
+        height: 35px;
+        align-items: center;
+        /* border: solid #E0D3DE; */
+        /* border-radius: 10px; */
+    }
+    .musicControls:nth-child(2){
+        transform: scale(2.5);
+    }
+	.musicButton{
+		width: 30px;
+		padding-left: 1em;
+		padding-right: 1em;
+	}
+    .playButton {
+        content: url('src/assets/music/play-light.svg');
+		/* width: 30px; */
+        height: 38px;
+		padding-left: 1em;
+		padding-right: 1em;
+    }
+    .pauseButton {
+        content: url('src/assets/music/pause-light.svg');
+		width: 38px;
+		padding-left: 1em;
+		padding-right: 1em;
+    }
+    .prev-song-btn{
+		width: 100%;
+        height: 100%;
+        outline: none;
+        border: none;
+        background:transparent;
+    }
+    .prev-song-btn:hover {
+        transform: scale(1.25);
+        filter: drop-shadow(0px 0px 10px #E0D3DE);
+    }
+    .prev-song-btn:active {
+        transform: translateY(2px);
+    }
+    .next-song-btn{
+		width: 100%;
+        height: 100%;
+        outline: none;
+        border: none;
+        background:transparent;
+    }
+    .next-song-btn:hover {
+        transform: scale(1.25);
+        filter: drop-shadow(0px 0px 10px #E0D3DE);
+    }
+    .next-song-btn:active {
+        transform: translateY(2px);
+    }
+    .play-song-btn{
+		width: 100%;
+        height: 100%;
+        outline: none;
+        border: none;
+        background:transparent;
+    }
+    .play-song-btn:hover {
+        transform: scale(1.25);
+        filter: drop-shadow(0px 0px 10px #E0D3DE);
+    }
+    .play-song-btn:active {
+        transform: translateY(2px);
+    }
+    .backButton {
+        content: url('src/assets/music/back-light.svg');
+		width: 30px;
+		padding-left: 1em;
+		padding-right: 1em;
+        filter: drop-shadow(-1px 1px 0 #81559B);
+    }
+    .nextButton {
+        content: url('src/assets/music/forw-light.svg');
+		width: 30px;
+		padding-left: 1em;
+		padding-right: 1em;
+    }
+    .muteButton {
+        content: url('src/assets/music/speaker-light.svg');
+		width: 30px;
+		padding-left: 1em;
+		padding-right: 1em;
+    }
+    .speakerButton {
+        content: url('src/assets/music/mute-light.svg');
+		width: 30px;
+		padding-left: 1em;
+		padding-right: 1em;
+    }
+    .musicBarBox {
+        /* background: transparent; */
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        border: solid #81559B;
+        border-radius: 20px;
+        align-items: center;
+        padding: 7px;
+        width: 70%;
+        position: sticky;
+    }
+	#musicBar {
+        -webkit-appearance: none;
+        /* width: 35%; */
+        width: auto;
+        min-width: 30%;
+        height: 6px;
+        background: #B9D996; 
+        border-radius: 5px;
+        margin: 10px;
+		cursor: url("../assets/cursor/normalLight.cur"), auto;
+        display: flex;
+        justify-content: space-evenly;
+	}
+    #musicBar::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        background-image: url("../assets/solosis.gif");
+        background-size: 30px;
+        width:30px;
+        height:30px;
+    }
+    #volumeBar {
+        -webkit-appearance: none;
+        width: 10%;
+        height: 6px;
+        /* background: #B9D996;  */
+        /* background: #42542E; */
+        /* background: #E0D3DE; */
+        background: #81559B;
+        border-radius: 5px;
+		cursor: url("../assets/cursor/normalLight.cur"), auto;
+        display: flex;
+        justify-content: space-evenly;
+	}
+    #volumeBar::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        background-image: url("../assets/cottonee.gif");
+        background-size: 30px 20px;
+        margin-left: -10px;
+        width:30px;
+        height:20px;
+    }
+    .songNameTitle{
+        width:180px;
+        border-radius: 15px;
+        line-height: 0.75em;
+    }
 </style>
