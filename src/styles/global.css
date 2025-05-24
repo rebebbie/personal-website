@@ -45,7 +45,7 @@ a.pixelEm {
 
 p.pixelH { 
 	font-family: "pixelHeader", Verdana, Tahoma;
-	font-size: 22px;
+	font-size: 32px;
 	/* TEMPORARY-ASSET-BELOW - DETERMINE COLOUR LATER */
 	color: #81559B;
 }
@@ -73,15 +73,6 @@ p.pixelH {
 .terminal-input:focus{
 	outline:none;
 }
-/* .terminal-input::after{ 
-	content: "";
-	width: 8px;
-	height: 15px; 
-	margin-left: 1px;
-	background: #E0D3DE;
-	display: inline-block;
-	animation: cursor-blink2 1.5s steps(1) infinite;
-} */
 .blinking-cursor{
 	content: "";
 	width: 8px;

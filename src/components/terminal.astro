@@ -94,10 +94,10 @@
                  console.log("skills function ran");
             }
         },
-        "mainpage data":{
+        "data science":{
             cmdDesc: "Enter the homepage for my Data Science Portfolio Website",
             run: function() {
-                 console.log("mainpage function ran");
+                 console.log("data science function ran");
             }
         }
     };
@@ -119,10 +119,7 @@
             checkCommand();
             createNewInputLine();
             commandStr = "";
-            window.scrollTo({bottom: 0, behavior: 'smooth'});
-            consoleBox.scrollTop = consoleBox.scrollHeight;
-            // userinput.focus();
-            // userinput.addEventListener("keydown", userType);
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
         } 
         else if(e.key === "Backspace"){
             console.log(commandStr);
