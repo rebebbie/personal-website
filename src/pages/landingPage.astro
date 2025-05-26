@@ -1,10 +1,18 @@
 ---
 import Bubble from '../components/cursorTrail.astro';
-import fishImg from '../assets/sketchy_fish.svg';
+import fishImg from '../assets/fish.svg';
 import Music from '../components/musicPlayer.astro';
 import Terminal from '../components/terminal.astro';
 import '../styles/global.css';
 ---
+
+<!-- 
+	TODO:
+	- glitched interaction between the music player and the terminal where if you click the play/pause button
+	  then hit enter on the terminal, it'll interact with the play/pause
+	   - likely an issue with the focus. just write code to automatically unfocus the play/pause button 
+	     after clicking it.
+-->
 
 <!doctype html>
 <html lang="en">
@@ -21,17 +29,17 @@ import '../styles/global.css';
 
 <div class="flexTable">
 	<div class="col-3"> 
-		<!-- <img src={fishImg.src} class="scaleImg">  -->
+		<img src={fishImg.src} class="scaleImg"> 
 	</div>
 	<div class="col-6">
 		<p class="iam-name">REBECCA <b>若汐</b> HAN</p>
-		<p class="iam-text">
-			Data Analyst
+		<p class="iam-text" id="iam">
+			
 		</p>
 		<Terminal />
 	</div>
 	<div class="col-3">
-		<!-- <img src={fishImg.src} class="flipScaleImg"> -->
+		<img src={fishImg.src} class="flipScaleImg">
 	</div>
 </div>
 
@@ -44,8 +52,45 @@ import '../styles/global.css';
 </html>
 
 <script type="text/javascript">
+	let iamtext = document.getElementById("iam");
 	function topFunction() {
 		window.scrollTo({top:0, behavior: 'smooth'});
+	}
+	
+	window.onload = (e) => {
+		loopText();
+	};
+
+	function loopText() {
+    	console.log("page is fully loaded");
+
+		const texts=[
+			"Data Analyst", "Test 1", "JFDSKAL", "halloooooooooooo", "erm"
+		];
+
+		// for(let t=0; t<texts.length; t++){
+		// 	console.log(texts[t]);
+		// 	for(let i=0; i < texts[t].length; i++){
+		// 		iamtext.innerHTML += texts[t].charAt(i);
+		// 		setTimeout(loopText(), 50);
+		// 	}
+		// }
+		// console.log(texts[0].length);
+		typeWriter(texts[0]);
+	}
+
+	let i = 0;
+	function typeWriter(t) {
+		let txt = String(t);
+			console.log(txt);
+		if (i < txt.length) {
+			iamtext.innerHTML += txt.charAt(i);
+			console.log(i);
+			i++;
+			setTimeout(function() {
+				typeWriter(t);
+			}, 1000);
+		}
 	}
 </script>
 
@@ -53,21 +98,24 @@ import '../styles/global.css';
 
 	#container {
 		font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
-		/* TEMPORARY-ASSET-BELOW */
-		/* background-image: url('../assets/background_placeholder.gif');  */
-		/* background: linear-gradient(20deg, #141528 0%, #8839a5 100%); */
 		background-size: cover; 
 		height: 100%;
 	}
 
 	img.flipScaleImg {
+		height: 80%;
+		max-width: 100%;
+		position: fixed;
+		display: flex;
 		transform: rotate(180deg);
-		width: 100%;
 		pointer-events: none;
 	}
 
 	img.scaleImg{
-		width: 100%;
+		height: 80%;
+		max-width: 100%;
+		position: fixed;
+		display: flex;
 		pointer-events: none;
 	}
 
