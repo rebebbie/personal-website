@@ -5,8 +5,6 @@ import songTest from '../assets/music/songs/testsong.mp3';
 <!-- 
 
 PROGRESS AND TODO:
-    - most functionality is good (might be some minor ux fine tuning left)
-    - some styling (spacing etc.) still needs to be adjusted. idk why its not centered
     - potentially loads slow bc theres hella mb from songs
     - make bar sticky
 -->
@@ -17,8 +15,8 @@ PROGRESS AND TODO:
             <button class="prev-song-btn" onclick="prevSong()" id="playBack">
                 <img class="backButton">
             </button>
-            <button class="play-song-btn" onclick="playPauseSong()">
-                <img class="playButton"  id="playPause">
+            <button class="play-song-btn" onclick="playPauseSong()" id="playPauseButton">
+                <img class="playButton" id="playPause">
             </button>
             <button class="next-song-btn" onclick="nextSong()" id="playNext">
                 <img class="nextButton">
@@ -34,7 +32,7 @@ PROGRESS AND TODO:
         <input type = "range" value="0" id="musicBar">
 
         <div class="musicControls">
-            <button class="mute-song" onclick="mutePlaySong()">
+            <button class="mute-song" onclick="mutePlaySong()" id="mutePlayButton">
                 <!-- NOTE: I switched the mute and speaker button names -->
                 <!-- so muteButton has the asset for speaker and vice versa -->
                 <!-- it was a little bit of shoddy code but eh it works -->
@@ -50,9 +48,12 @@ PROGRESS AND TODO:
         let song = document.getElementById("curSong");
         let songSrc = document.getElementById("curSongSrc");
         let playpause = document.getElementById("playPause");
+        let playPauseB = document.getElementById("playPauseButton");
         let name = document.getElementById("songName");
         let songMute = document.getElementById("mutePlay");
+        let songMuteB = document.getElementById("mutePlayButton");
         let songVol = document.getElementById("volumeBar");
+
 
         const songs = [
             {
@@ -166,6 +167,7 @@ PROGRESS AND TODO:
                 playpause.classList.remove("playButton");
                 playpause.classList.add("pauseButton");
             }
+            playPauseB.blur();
         }
 
         function mutePlaySong(){
@@ -179,6 +181,7 @@ PROGRESS AND TODO:
                 songMute.classList.remove("speakerButton");
                 songMute.classList.add("muteButton");
             }
+            songMuteB.blur();
         }
 
         function nextSong(){
@@ -376,6 +379,7 @@ PROGRESS AND TODO:
         border: solid #81559B;
         border-radius: 20px;
         align-items: center;
+        justify-content:center;
         padding: 7px;
         width: 70%;
         position: sticky;

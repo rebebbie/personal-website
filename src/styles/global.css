@@ -128,9 +128,9 @@ a.pixelCode {
 .cmdTableName{
 	filter: drop-shadow(0px 0px 3px #E0D3DE); 
 }
-.cmdTableName{
+/* .cmdTableName{
 	filter: drop-shadow(0px 0px 3px #E0D3DE); 
-}
+} */
 
 p {
 	color: #4b5563;
