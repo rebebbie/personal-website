@@ -54,38 +54,46 @@ import '../styles/global.css';
 	}
 	
 	window.onload = (e) => {
-		loopText();
+		loopText(texts[textIndex]);
 	};
 
-	function loopText() {
-    	console.log("page is fully loaded");
-
-		const texts=[
-			"Data Analyst", "Test 1", "JFDSKAL", "halloooooooooooo", "erm"
-		];
-
-		// for(let t=0; t<texts.length; t++){
-		// 	console.log(texts[t]);
-		// 	for(let i=0; i < texts[t].length; i++){
-		// 		iamtext.innerHTML += texts[t].charAt(i);
-		// 		setTimeout(loopText(), 50);
-		// 	}
-		// }
-		// console.log(texts[0].length);
-		typeWriter(texts[0]);
+	const texts=[
+		"Data Analyst", "Machine Learning Specialist", "IT Professional", "Data Scientist", "Fullstack Developer"
+	];
+		
+	let textIndex = 0;
+	function loopText(t) {
+		console.log(t);
+		typeWriter(t);
 	}
 
 	let i = 0;
+	let timeout = 0;
 	function typeWriter(t) {
 		let txt = String(t);
-			console.log(txt);
-		if (i < txt.length) {
-			iamtext.innerHTML += txt.charAt(i);
-			console.log(i);
-			i++;
+		if (i >= txt.length){
+			setTimeout(function() {
+				deleteWriter(t);
+			}, 750);
+		}
+		else {
+			iamtext.innerHTML += txt.charAt(i++);
 			setTimeout(function() {
 				typeWriter(t);
-			}, 1000);
+			}, Math.random() * (200 - 50) + 50);
+		}
+	}
+	function deleteWriter(t) {
+		let txt = String(t);
+		if (i < 0){
+			textIndex++; 
+			loopText(texts[textIndex%texts.length]); 
+		}
+		else{
+			iamtext.innerHTML = txt.slice(0, i--);
+			setTimeout(function() {
+				deleteWriter(t);
+			}, Math.random() * (200 - 50) + 50);
 		}
 	}
 </script>
@@ -161,12 +169,14 @@ import '../styles/global.css';
 	}
 	.iam-text{
 		font-family: "redhat", Verdana, Tahoma;
+		height: 32px;
 		font-size: 32px;
 		font-weight: bold;
 		text-align: center;
 		/* text-align: left; */
 		/* padding-left:50px; */
 		color: #E0D3DE;
+		filter: drop-shadow(0px 0px 2px #E0D3DE);
 	}
 
 	p {
