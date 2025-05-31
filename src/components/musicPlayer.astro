@@ -49,6 +49,8 @@ PROGRESS AND TODO:
         let songSrc = document.getElementById("curSongSrc");
         let playpause = document.getElementById("playPause");
         let playPauseB = document.getElementById("playPauseButton");
+        let nextB = document.getElementById("playNext");
+        let prevB = document.getElementById("playBack");
         let name = document.getElementById("songName");
         let songMute = document.getElementById("mutePlay");
         let songMuteB = document.getElementById("mutePlayButton");
@@ -220,7 +222,8 @@ PROGRESS AND TODO:
             else{
                 if(songVol.value==0){
                     songVol.value = 20;
-                    // TODO: NOT WORKING ATM needs colour fix
+                    var color = 'linear-gradient(90deg,rgb(224,211,222)'+songVol.value+'%, rgb(129,85,155)'+songVol.value+'%)';
+                    songVol.style.background=color;
                 }
                 song.volume = songVol.value/100;
                 songMute.classList.remove("speakerButton");
@@ -235,6 +238,7 @@ PROGRESS AND TODO:
             song.load();
             song.play();
             playpause.className = "pauseButton";
+            nextB.blur();
         }
         function prevSong(){
             index = Math.max((index - 1)%songs.length,0);
@@ -242,6 +246,7 @@ PROGRESS AND TODO:
             song.load();
             song.play();
             playpause.className = "pauseButton";
+            prevB.blur();
         }
 
         if(song.play()){
