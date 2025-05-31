@@ -1,7 +1,6 @@
 ---
 import Bubble from '../components/cursorTrail.astro';
 import Music from '../components/musicPlayer.astro';
-import Terminal from '../components/terminal.astro';
 import '../styles/global.css';
 ---
 
@@ -19,13 +18,58 @@ import '../styles/global.css';
 		<title>Bec!</title>
 	</head>
 	<body>
+        <Music />
+        <Bubble />
+        <div class="flexTable">
+            <div class="col-1"></div>
+            <div class="col-2"> 
+                <div class="profile-box">
+                    <p class="pixelCons">
+                        Type <a class="pixelCode">help</a> for a list of commands.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam gravida laoreet gravida. Nunc pretium libero quis lacus auctor mollis. Aenean elit libero, venenatis in est nec, blandit sodales neque. Duis sed massa suscipit, faucibus turpis sed, dictum neque. Nam eget velit aliquam, aliquet ligula at, pretium sapien.
+                    </p>
+                </div>
+            </div>
+            <div class="col-8"> 
+                <div class="content-box">
+                    <p class="pixelCons">
+                        Type <a class="pixelCode">help</a> for a list of commands.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam gravida laoreet gravida. Nunc pretium libero quis lacus auctor mollis. Aenean elit libero, venenatis in est nec, blandit sodales neque. Duis sed massa suscipit, faucibus turpis sed, dictum neque. Nam eget velit aliquam, aliquet ligula at, pretium sapien. Duis vulputate pharetra dolor in tempus. Vivamus viverra commodo est, suscipit semper velit tristique vel. Integer tempus mi pulvinar velit ultricies, et luctus magna hendrerit. Donec imperdiet tempus est id condimentum. Praesent metus mi, ullamcorper vitae commodo vel, porttitor dignissim diam.
+                        Integer ullamcorper, diam sit amet tempus viverra, quam eros scelerisque massa, at tincidunt lacus lorem eget sapien. Mauris est eros, efficitur vel mauris et, euismod ultrices mauris. Donec tempor commodo lacus, vel suscipit purus convallis a. Curabitur sed metus enim. Integer ut tincidunt dui, ac interdum purus. Nullam vestibulum non dolor id aliquet. Pellentesque faucibus in turpis eget varius. Ut non imperdiet orci. Integer a finibus magna, id tincidunt est. Nam et orci congue, fermentum quam bibendum, volutpat magna. Cras nec felis sit amet justo porta dignissim. Phasellus sed quam non nibh pretium ultrices vitae id nisi. Nulla sollicitudin risus suscipit magna malesuada elementum. In et rhoncus velit. Pellentesque iaculis, elit consequat fringilla suscipit, metus nisi dignissim justo, ac facilisis dui leo dapibus nisl.
 
-<Music />
- 
- <Bubble />
-</body>
+Integer tincidunt eros velit, eu volutpat tellus faucibus a. Pellentesque sit amet diam justo. Vivamus eget sodales mauris, ac dapibus augue. Nam luctus placerat turpis vitae malesuada. Sed mattis est id neque tincidunt pretium. Etiam viverra leo a dui faucibus, eu iaculis nulla efficitur. Praesent semper, eros sed mollis convallis, mi velit laoreet erat, scelerisque mollis neque mi sed nibh. Vestibulum accumsan, nisl sodales pellentesque vestibulum, nulla urna bibendum tortor, nec auctor ex turpis in lorem. Suspendisse augue tellus, imperdiet eget diam et, euismod porta odio. Donec magna leo, rhoncus sed scelerisque sit amet, cursus feugiat tellus. Sed eu bibendum nisl. Nulla facilisi.
+
+Vivamus non enim vehicula odio laoreet imperdiet. Praesent id nunc dignissim, placerat nunc a, posuere metus. Phasellus vulputate metus quis enim interdum eleifend. Fusce eleifend, dolor ac tristique suscipit, nibh leo convallis mi, interdum iaculis arcu orci a neque. Nullam posuere ligula nisl, ac finibus orci elementum eu. Ut augue massa, efficitur cursus facilisis ac, ultrices a felis. Curabitur dignissim mattis arcu in luctus.
+                    </p>
+                </div>
+            </div>
+            <div class="col-1"></div>
+        </div>
+    </body>
 </html>
 
 <script type="text/javascript">
 
 </script>
+
+<style>
+.profile-box{
+    display: flex;
+	border-style: solid;
+	border-width: 2px;
+	border-radius: 8px; 
+	border-color: #81559B;
+	padding-left: 20px; 
+	padding-right: 20px;
+}
+.content-box{
+    display: flex;
+	border-style: solid;
+	border-width: 2px;
+	border-radius: 8px; 
+	border-color: #81559B;
+	padding-left: 20px; 
+	padding-right: 20px;
+    margin-left: 20px;
+}
+</style>

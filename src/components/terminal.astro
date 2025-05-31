@@ -131,10 +131,16 @@
             cmdDesc: "Enter the homepage for my Data Science Portfolio Website",
             run: function() {
                  console.log("data science function ran");
-                 window.location.href = "datasci";
+
+                document.dispatchEvent(new CustomEvent("setSong"));
             }
         }
     };
+    
+    document.addEventListener("loadDataPage", () => {
+        console.log("reached :3");
+        window.location.href = "datasci";
+    });
 
     window.addEventListener("load", loadFirstCmd);
     window.addEventListener("keydown", userType);

@@ -6,7 +6,7 @@ import songTest from '../assets/music/songs/testsong.mp3';
 
 PROGRESS AND TODO:
     - potentially loads slow bc theres hella mb from songs
-    - make bar sticky
+    - blur other buttons (forw, back, mute/speak)
 -->
 
 <div class="musicPlayer">	
@@ -107,9 +107,9 @@ PROGRESS AND TODO:
                 artist: "Clairo"
             },
             {
-                source: "/src/assets/music/songs/10-spaceoddity.mp3",
-                name: "Space Oddity (2015 Remaster)",
-                artist: "David Bowie"
+                source: "/src/assets/music/songs/10-zero.mp3",
+                name: "0 (zero)",
+                artist: "LMYK"
             },
             {
                 source: "/src/assets/music/songs/11-nothingelse.mp3",
@@ -141,7 +141,41 @@ PROGRESS AND TODO:
         let index = 0;
         songSrc.src = songs[index].source;
 
+        document.addEventListener("setSong", () => {
+            
+            localStorage.setItem("index", index);
+            localStorage.setItem("progress", curSong.currentTime);
+            localStorage.setItem("volume",songVol.value);
+            console.log(songVol.value);
+
+            document.dispatchEvent(new CustomEvent("loadDataPage"));
+        });
+
+        window.onload = function(){
+            index = localStorage.getItem("index");
+            if(!index){
+                index = 0;
+            }
+            songSrc.src = songs[index].source;
+            song.load();
+
+            let p = localStorage.getItem("progress");
+            if(!p){
+                p=0;
+            }
+            song.currentTime = p;
+
+            let v = localStorage.getItem("volume");
+            if(!v && v!=0){
+                v=20;
+            }
+            songVol.max = 100;
+            songVol.value = v;
+            console.log(songVol.value);
+        }
+
         song.onloadedmetadata = function(){
+            console.log("should be 1");
             // for progress bar to work properly
             progress.max = curSong.duration;
             progress.value = curSong.currentTime;
@@ -149,7 +183,14 @@ PROGRESS AND TODO:
             
             // audio setup for on-load behaviour 
             song.volume = songVol.value/100;
-            songMute.classList.add("muteButton");
+            console.log("ermmm");
+            console.log(song.volume);
+            if(songVol.value<1){
+                songMute.classList.add("speakerButton");
+            }
+            else{
+                songMute.classList.add("muteButton");
+            }
             songVol.max = 100;
             var color = 'linear-gradient(90deg,rgb(224,211,222)'+song.volume*100+'%, rgb(129,85,155)'+song.volume*100+'%)';
             songVol.style.background=color;
@@ -177,6 +218,10 @@ PROGRESS AND TODO:
                 songMute.classList.add("speakerButton");
             }
             else{
+                if(songVol.value==0){
+                    songVol.value = 20;
+                    // TODO: NOT WORKING ATM needs colour fix
+                }
                 song.volume = songVol.value/100;
                 songMute.classList.remove("speakerButton");
                 songMute.classList.add("muteButton");
@@ -189,16 +234,14 @@ PROGRESS AND TODO:
             songSrc.src = songs[index].source;
             song.load();
             song.play();
-            playpause.classList.remove("playButton");
-            playpause.classList.add("pauseButton");
+            playpause.className = "pauseButton";
         }
         function prevSong(){
             index = Math.max((index - 1)%songs.length,0);
             songSrc.src = songs[index].source;
             song.load();
             song.play();
-            playpause.classList.remove("playButton");
-            playpause.classList.add("pauseButton");
+            playpause.className = "pauseButton";
         }
 
         if(song.play()){

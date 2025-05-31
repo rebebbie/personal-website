@@ -22,6 +22,7 @@ import '../styles/global.css';
 	<body>
 
 <Music />
+<Bubble />
 
 <div class="flexTable">
 	<div class="col-3"> 
@@ -29,9 +30,7 @@ import '../styles/global.css';
 	</div>
 	<div class="col-6">
 		<p class="iam-name">REBECCA <b>若汐</b> HAN</p>
-		<p class="iam-text" id="iam">
-			
-		</p>
+		<p class="iam-text" id="iam"></p>
 		<Terminal />
 	</div>
 	<div class="col-3">
@@ -42,8 +41,6 @@ import '../styles/global.css';
 <div class="top-scroll-button">
 	<a class="pixelEm" onclick="topFunction()"><i><u>Scroll to top</u></i></a>
 </div>
- 
- <Bubble />
 </body>
 </html>
 
@@ -53,9 +50,12 @@ import '../styles/global.css';
 		window.scrollTo({top:0, behavior: 'smooth'});
 	}
 	
-	window.onload = (e) => {
+	// window.onload = (e) => {
+	// 	loopText(texts[textIndex]);
+	// };
+	window.addEventListener("load", () => {
 		loopText(texts[textIndex]);
-	};
+	});
 
 	const texts=[
 		"Data Analyst", "Machine Learning Specialist", "IT Professional", "Data Scientist", "Fullstack Developer"
@@ -68,7 +68,6 @@ import '../styles/global.css';
 	}
 
 	let i = 0;
-	let timeout = 0;
 	function typeWriter(t) {
 		let txt = String(t);
 		if (i >= txt.length){
@@ -96,6 +95,7 @@ import '../styles/global.css';
 			}, Math.random() * (200 - 50) + 50);
 		}
 	}
+	
 </script>
 
 <style>
