@@ -96,6 +96,12 @@ p.pixelCons {
 	color: #81559B;
 	text-align: left; 
 }
+p.pixelCons-dark{
+	font-family: "pixelHeader", Verdana, Tahoma;
+	font-size: 18px;
+	color: #14110F;
+	text-align: left; 
+}
 a.pixelCode {
 	font-family: "pixelHeader", Verdana, Tahoma;
 	font-size: 20px;
