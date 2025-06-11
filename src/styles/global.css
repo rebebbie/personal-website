@@ -189,6 +189,51 @@ img {
 	color: #E0D3DE;
     filter: drop-shadow(0px 0px 0 #E0D3DE);
 }
+.soc-bar{
+	position: fixed;
+    bottom: 38%;
+}
+.soc-button{
+	/* position: absolute; */
+    /* width: 50%; */
+	height: 50px;
+	width: 50px;
+    outline: none;
+    background-color:#81559B;
+    font-family: "pixelHeader", Verdana, Tahoma;
+	color: #14110F;
+    border: none;
+    border-radius: 8px;
+	margin: 10px 20px 0px 20px;
+	padding-top:10px;
+	padding-bottom:10px;
+    /* margin-top: 10px; */
+    filter: drop-shadow(-2px 3px 0 #E0D3DE);
+}
+.soc-button .soc-button-text{
+  visibility: hidden;
+  width: 120px;
+  background-color: #14110F;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  filter: drop-shadow(0px 0px 1px #E0D3DE);
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: -3px; /*increase to lower position*/
+  right: 105%;
+}
+.soc-button:hover .soc-button-text{
+	visibility: visible;
+}
+.soc-button:active{
+    transform: translate(-2px,2px);
+	color: #E0D3DE;
+    filter: drop-shadow(0px 0px 0 #E0D3DE);
+}
 
 .flexTable {
 	margin: 0 auto;
@@ -209,6 +254,9 @@ img {
 
 .col-1 {
 	flex-basis: calc(1 / 12 * 100%);
+	display: absolute;
+	height: 50%;
+	align-items: center;
 }
 
 .col-2 {
