@@ -218,7 +218,7 @@ img {
   text-align: center;
   border-radius: 6px;
   padding: 5px 0;
-  filter: drop-shadow(0px 0px 1px #E0D3DE);
+  filter: drop-shadow(px 0px 1px #E0D3DE);
   
   /* Position the tooltip */
   position: absolute;

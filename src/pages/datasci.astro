@@ -35,15 +35,31 @@ import '../styles/global.css';
                         Thanks for visiting my website. Enjoy your stay!
                     </p>
                 </div>
-                <button class="nav-button">
+                
+                <!-- old -->
+                <!-- <button class="nav-button">
                     Projects
-                </button>
-                <button class="nav-button">
+                </button> -->
+
+                <!-- doing testing between these lines -->
+                
+                <a class="nav-button-wrapper">
+                    <!-- TEMPORARY-ASSET-BELOW -->
+                    <img class="nav-button-img" src="https://i.imgur.com/H4JD35M.png"> 
+                    <span class="bubble-circle">
+
+                    </span>
+                </a>
+
+                <!-- doing testing between these lines -->
+
+
+                <!-- <button class="nav-button">
                     Experiences
                 </button>
                 <button class="nav-button">
                     Certifications
-                </button>
+                </button> -->
                 <p><a class="pixelCode">Return to landing page</a></p>
             </div>
             <div class="col-8"> 
@@ -97,7 +113,7 @@ img.pfp{
     filter: drop-shadow(-5px 5px 0px #81559B); 
 }
 .profile-box{
-    display: flex;
+    display: inline-flex;
     flex-wrap: wrap;
     justify-content: center;
     width:80%;
@@ -117,6 +133,44 @@ img.pfp{
 	padding-left: 20px; 
 	padding-right: 20px;
     margin-left: 20px;
+}
+
+.nav-button-wrapper{
+    color:aliceblue;
+    display: inline-flex;
+}
+.nav-button-wrapper::after{
+  position: absolute;
+  bottom: 0;
+  left: -20px;
+  content: '';
+  width: 120%;
+  height: 80%;
+  background-color: blue;
+  z-index: -1;
+  border-radius: 20rem 0 20rem 0;
+}
+.nav-button-wrapper:hover{
+    transform: rotate(-6deg) scale(1.25);
+    /* transform: scale(1.25); */
+}
+
+/* .nav-button-wrapper:hover .nav-button-img{
+    animation: jelly-anim 2s infinite;
+} */
+@keyframes jelly-anim {
+    /* temp animation, add shape */
+    /* 50% {transform: rotate(180deg);} */
+      from {
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
 
 </style>
