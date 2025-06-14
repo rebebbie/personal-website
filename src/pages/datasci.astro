@@ -1,7 +1,9 @@
 ---
 import Bubble from '../components/cursorTrail.astro';
 import Music from '../components/musicPlayer.astro';
+import Project from '../components/projects.astro';
 import '../styles/global.css';
+import type Projects from '../components/projects.astro';
 ---
 
 <!-- 
@@ -26,6 +28,7 @@ import '../styles/global.css';
         <div class="flexTable">
             <div class="col-1"></div>
             <div class="col-2"> 
+                <!-- <div class="left-sidebar-wrapper"> -->
                 <div class="profile-box">
                     <img class="pfp" src="src/assets/datasci-images/test-pfp.png">
                     <p class="pixelCons">
@@ -36,34 +39,28 @@ import '../styles/global.css';
                     </p>
                 </div>
                 
-                <!-- old -->
-                <!-- <button class="nav-button">
-                    Projects
-                </button> -->
-
-                <!-- doing testing between these lines -->
-                
                 <a class="nav-button-wrapper">
                     <!-- TEMPORARY-ASSET-BELOW -->
+                    <!-- PROJECTS -->
                     <img class="nav-button-img" src="https://i.imgur.com/H4JD35M.png"> 
-                    <span class="bubble-circle">
-
-                    </span>
+                </a>
+                <a class="nav-button-wrapper">
+                    <!-- TEMPORARY-ASSET-BELOW -->
+                     <!-- EXPERIENCES -->
+                    <img class="nav-button-img" src="https://i.imgur.com/H4JD35M.png"> 
+                </a>
+                <a class="nav-button-wrapper">
+                    <!-- TEMPORARY-ASSET-BELOW -->
+                     <!-- CERTIFICATIONS -->
+                    <img class="nav-button-img" src="https://i.imgur.com/H4JD35M.png"> 
                 </a>
 
-                <!-- doing testing between these lines -->
-
-
-                <!-- <button class="nav-button">
-                    Experiences
-                </button>
-                <button class="nav-button">
-                    Certifications
-                </button> -->
                 <p><a class="pixelCode">Return to landing page</a></p>
+                <!-- </div> -->
             </div>
             <div class="col-8"> 
                 <div class="content-box">
+                    <Project />
                     <p class="pixelCons">
                         Type <a class="pixelCode">help</a> for a list of commands.
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam gravida laoreet gravida. Nunc pretium libero quis lacus auctor mollis. Aenean elit libero, venenatis in est nec, blandit sodales neque. Duis sed massa suscipit, faucibus turpis sed, dictum neque. Nam eget velit aliquam, aliquet ligula at, pretium sapien. Duis vulputate pharetra dolor in tempus. Vivamus viverra commodo est, suscipit semper velit tristique vel. Integer tempus mi pulvinar velit ultricies, et luctus magna hendrerit. Donec imperdiet tempus est id condimentum. Praesent metus mi, ullamcorper vitae commodo vel, porttitor dignissim diam.
@@ -125,7 +122,9 @@ img.pfp{
 	padding-right: 20px;
 }
 .content-box{
-    display: flex;
+    display: inline-flex;
+    height:auto;
+    width:auto;
 	border-style: solid;
 	border-width: 2px;
 	border-radius: 8px; 
@@ -176,6 +175,9 @@ img.pfp{
 }
 .nav-button-img{
     z-index:100;
+}
+.nav-button-wrapper:hover .nav-button-img{
+    transform: rotate(-6deg);
 }
 
 @keyframes jelly-anim-bg {

@@ -189,6 +189,21 @@ img {
 	color: #E0D3DE;
     filter: drop-shadow(0px 0px 0 #E0D3DE);
 }
+.left-sidebar-wrapper{
+    display: inline-flex;
+	position:absolute;
+	  bottom: 0;
+  right: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    width:80%;
+	border-style: solid;
+	border-width: 2px;
+	border-radius: 8px; 
+	border-color: #81559B;
+	padding-left: 20px; 
+	padding-right: 20px;
+}
 .soc-bar{
 	position: fixed;
     bottom: 38%;
