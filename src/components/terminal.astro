@@ -6,6 +6,7 @@
     - TODO: fix some UI/UX stuff to be smoother
     - add remaining functions
     - make page automatically scroll down when new information appears. 
+        - window listen for keypress. scroll down to bottom and focus the terminal screen
 -->
 <div class="console" id="consoleID" onclick="focusInputLine()">
     <p class="pixelCons">
@@ -251,7 +252,7 @@
             // no command print
             let noCmdFoundMsg = document.createElement("div");
             noCmdFoundMsg.innerHTML =
-                "<p class='pixelCons'>Command not recognized. Please type <a class='pixelCode'>help</a> for a list of commands!</p>";
+                "<p class='pixelCons' style='text-align:left;'>Command not recognized. Please type <a class='pixelCode'>help</a> for a list of commands!</p>";
             consoleBox.appendChild(noCmdFoundMsg);
             console.log("nop");
         }
@@ -271,5 +272,8 @@
         -webkit-appearance: none;
         border: none;
         background: black;
+    }
+    p{
+        text-align:left;
     }
 </style>

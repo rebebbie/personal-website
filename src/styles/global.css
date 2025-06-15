@@ -94,7 +94,7 @@ p.pixelCons {
 	font-family: "pixelHeader", Verdana, Tahoma;
 	font-size: 18px;
 	color: #81559B;
-	text-align: left; 
+	/* text-align: left;  */
 }
 p.pixelCons-dark{
 	font-family: "pixelHeader", Verdana, Tahoma;
@@ -111,6 +111,7 @@ a.pixelCode {
 }
 .console {
 	background-color: black;
+	text-align: left;
 	border-style: solid;
 	border-width: 2px;
 	border-radius: 8px; 
@@ -137,6 +138,23 @@ a.pixelCode {
 /* .cmdTableName{
 	filter: drop-shadow(0px 0px 3px #E0D3DE); 
 } */
+.iam-name{
+	font-family: "pixelHeader", Verdana, Tahoma;
+	font-size: 50px;
+	color: #81559B;
+	text-shadow: -1px 1px 0px #B9D996;
+}
+.iam-text{
+	font-family: "redhat", Verdana, Tahoma;
+	height: 32px;
+	font-size: 32px;
+	font-weight: bold;
+	text-align: center;
+	/* text-align: left; */
+	/* padding-left:50px; */
+	color: #E0D3DE;
+	filter: drop-shadow(0px 0px 2px #E0D3DE);
+}
 
 p {
 	color: #4b5563;
@@ -191,12 +209,12 @@ img {
 }
 .left-sidebar-wrapper{
     display: inline-flex;
-	position:absolute;
-	  bottom: 0;
-  right: 0;
+	position:fixed;
+	top: 15%;
+  	left: 7%;
     flex-wrap: wrap;
     justify-content: center;
-    width:80%;
+    width:15%;
 	border-style: solid;
 	border-width: 2px;
 	border-radius: 8px; 
@@ -207,6 +225,7 @@ img {
 .soc-bar{
 	position: fixed;
     bottom: 38%;
+	z-index: 1000;
 }
 .soc-button{
 	/* position: absolute; */
