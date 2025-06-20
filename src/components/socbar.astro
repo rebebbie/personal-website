@@ -4,32 +4,64 @@ import socImg2 from '../assets/datasci-images/soc-in.svg';
 import socImg3 from '../assets/datasci-images/soc-res.svg';
 ---
 
-<div class="soc-bar">
-    <button class="soc-button">
+<!-- TODO:
+        - soc buttons
+            - for some reason the active (click) animation is slow.
+ -->
+
+<div class="soc-bar" id="socialsBar">
+    <button class="soc-button" onclick="linkout('g')">
         <span class="soc-button-text">Visit my Github</span>
         <img src={socImg1.src}  class="soc-icon"> 
     </button>
-    <button class="soc-button">
+    <button class="soc-button" onclick="linkout('l')">
         <span class="soc-button-text">Connect with me on LinkedIn</span>
         <img src={socImg2.src}  class="soc-icon" style="transform:scale(1.25);"> 
     </button>
-    <button class="soc-button">
+    <button class="soc-button" onclick="linkout('r')">
         <span class="soc-button-text">Download my resume</span>
         <img src={socImg3.src}  class="soc-icon"> 
     </button>
 </div>
 
+<script type="text/javascript">
+    let socBox = document.getElementById("socialsBar");  
+    function linkout(s) {
+        let outlink = document.createElement("a");
+        //TODO external links
+        if(s == 'g'){
+            outlink.href = "https://github.com/rebebbie";
+            outlink.target="_blank";
+        }
+        if(s == 'l'){
+            outlink.href = "https://www.linkedin.com/in/rebecca-ruoxi-han/";
+            outlink.target="_blank";
+        }
+        else if(s == 'r'){
+            outlink.href = "src/assets/resume.pdf";
+            outlink.download = "Rebecca Han Resume";
+        }
+        socBox.appendChild(outlink);
+        outlink.click();
+        outlink.remove();
+    }
+</script>
+
 <style>
     .soc-button-text{
         display:none;
+        margin-right:8px;
     }
 .soc-bar{
 	position: fixed;
-    width:100px;
+    width: auto;
+    min-width:100px;
     max-width:500px;
     display:flex;
     justify-content: flex-end;
+    align-items: flex-end;
     flex-wrap:wrap;
+    flex-direction: column;
     bottom: 38%;
     right:2%;
 	z-index: 1000;
@@ -38,7 +70,9 @@ import socImg3 from '../assets/datasci-images/soc-res.svg';
 	/* position: absolute; */
     /* width: 50%; */
 	height: 35px;
-    width: 35%;
+    width: 35px;
+    min-width:35px;
+    max-width:35px;
     overflow:hidden;
 	/* width: 50px; */
     
@@ -58,10 +92,10 @@ align-items: center;
     filter: drop-shadow(-2px 3px 0 #81559B);
 } 
 .soc-button:hover{
-	width:500%;
-    /* max-width:550px; */
-    -webkit-transition: 1s;
-    transition: 1s;
+	width:fit-content;
+    max-width:200px;
+    -webkit-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
 }
 .soc-button:hover .soc-button-text{
     display: inline-flex;
@@ -88,7 +122,9 @@ align-items: center;
 } */
 .soc-button:active{
     transform: translate(-2px,2px);
-	color: #E0D3DE;
+    -webkit-transition: 0.1s;
+    transition: 0.1s;
+	/* color: #E0D3DE; */
     filter: drop-shadow(0px 0px 0 #E0D3DE);
 }
 .soc-icon{
