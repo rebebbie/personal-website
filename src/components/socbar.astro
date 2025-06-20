@@ -1,0 +1,97 @@
+---
+import socImg1 from '../assets/datasci-images/soc-git.svg';
+import socImg2 from '../assets/datasci-images/soc-in.svg';
+import socImg3 from '../assets/datasci-images/soc-res.svg';
+---
+
+<div class="soc-bar">
+    <button class="soc-button">
+        <span class="soc-button-text">Visit my Github</span>
+        <img src={socImg1.src}  class="soc-icon"> 
+    </button>
+    <button class="soc-button">
+        <span class="soc-button-text">Connect with me on LinkedIn</span>
+        <img src={socImg2.src}  class="soc-icon" style="transform:scale(1.25);"> 
+    </button>
+    <button class="soc-button">
+        <span class="soc-button-text">Download my resume</span>
+        <img src={socImg3.src}  class="soc-icon"> 
+    </button>
+</div>
+
+<style>
+    .soc-button-text{
+        display:none;
+    }
+.soc-bar{
+	position: fixed;
+    width:100px;
+    max-width:500px;
+    display:flex;
+    justify-content: flex-end;
+    flex-wrap:wrap;
+    bottom: 38%;
+    right:2%;
+	z-index: 1000;
+}
+.soc-button{
+	/* position: absolute; */
+    /* width: 50%; */
+	height: 35px;
+    width: 35%;
+    overflow:hidden;
+	/* width: 50px; */
+    
+        display:flex;
+align-items: center;
+/* max-width:35px; */
+    outline: none;
+    background-color:#E0D3DE;
+    font-family: "pixelHeader", Verdana, Tahoma;
+	color: #81559B;
+    border: none;
+    border-radius: 8px;
+	margin: 10px 20px 0px 20px;
+	padding-top:10px;
+	padding-bottom:10px;
+    /* margin-top: 10px; */
+    filter: drop-shadow(-2px 3px 0 #81559B);
+} 
+.soc-button:hover{
+	width:500%;
+    /* max-width:550px; */
+    -webkit-transition: 1s;
+    transition: 1s;
+}
+.soc-button:hover .soc-button-text{
+    display: inline-flex;
+}
+/* .soc-button .soc-button-text{
+    display:inline-flex;
+  visibility: hidden;
+  width: 120px;
+  background-color: #14110F;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  filter: drop-shadow(px 0px 1px #E0D3DE);
+  
+  (Position the tooltip)
+  position: absolute;
+  z-index: 1;
+  top: -3px; 
+  right: 105%;
+} */
+/* .soc-button:hover .soc-button-text{
+	visibility: visible;
+} */
+.soc-button:active{
+    transform: translate(-2px,2px);
+	color: #E0D3DE;
+    filter: drop-shadow(0px 0px 0 #E0D3DE);
+}
+.soc-icon{
+    width:25px;
+}
+</style>

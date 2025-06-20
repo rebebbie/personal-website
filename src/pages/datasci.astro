@@ -2,6 +2,7 @@
 import Bubble from '../components/cursorTrail.astro';
 import Music from '../components/musicPlayer.astro';
 import Project from '../components/projects.astro';
+import SocBar from '../components/socbar.astro';
 import '../styles/global.css';
 import type Projects from '../components/projects.astro';
 ---
@@ -62,21 +63,8 @@ import type Projects from '../components/projects.astro';
                     <Project />
             </div>
             <div class="col-1">
-                <div class="soc-bar">
-                    <button class="soc-button">
-                        [github]
-                        <span class="soc-button-text">Visit my Github</span>
-                    </button>
-                    <button class="soc-button">
-                        [linkedin]
-                        <span class="soc-button-text">Connect with me on LinkedIn</span>
-                    </button>
-                    <button class="soc-button">
-                        [resume]
-                        <span class="soc-button-text">Download my resume</span>
-                    </button>
-                </div>
             </div>
+                <SocBar/>
         </div>
     </body>
 </html>
@@ -103,6 +91,7 @@ img.pfp{
 	border-width: 2px;
 	border-radius: 8px; 
 	border-color: #81559B;
+    margin-bottom:20px;
 	padding-left: 20px; 
 	padding-right: 20px;
 }
