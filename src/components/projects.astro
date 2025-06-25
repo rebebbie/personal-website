@@ -3,129 +3,105 @@
 
 <!-- TODO
 
-    - https://www.youtube.com/watch?v=mF9yOwlunWk 
-        - refer to this for how to get slideshow preview to auto-filter non-focused slides
+    - plan for how to change content
+        - make three divs "projects-wrapper" "experiences-wrapper" and "fun-wrapper" (can't decide if fun or certifications should be there)
+        - give each div an id
+        - make the 2nd and 3rd divs initially visibility=none
+        - upon tab change change the visibilities of the three wrappers using javascript accordingly
 
 -->
 
 <div class="content-box">
-    <p class="iam-name">
-        Projects
-    </p>
-    <p class="redhatBody">
-        Below is a list of my data science-related projects. Please use the arrows on the sides to navigate through them!
-    </p>
+    <div class="projects-wrapper" id="proj-wrap">
+        <p class="iam-name" style="display:block;">
+            Projects
+        </p>
+        <div class="card-wrapper">
+            <div class="project-card">
 
-
-    <div class="slideshow-wrapper">
-        <img class="slide-img" src="src/assets/datasci-images/slideshow/1.svg">
-        <img class="slide-img" src="src/assets/datasci-images/slideshow/2.svg">
-        <img class="slide-img" src="src/assets/datasci-images/slideshow/3.svg">
-        <img class="slide-img" src="src/assets/datasci-images/slideshow/4.svg">
-        <img class="slide-img" src="src/assets/datasci-images/slideshow/5.svg">
-        <img class="slide-img" src="src/assets/datasci-images/slideshow/6.svg">
-        <img class="slide-img" src="src/assets/datasci-images/slideshow/7.svg">
-        <img class="slide-img" src="src/assets/datasci-images/slideshow/8.svg">
-        <img class="slide-img" src="src/assets/datasci-images/slideshow/9.svg">
-        <img class="slide-img" src="src/assets/datasci-images/slideshow/10.svg">
-        <img class="slide-img" src="src/assets/datasci-images/slideshow/11.svg">
-        <img class="slide-img" src="src/assets/datasci-images/slideshow/12.svg">
-        <img class="slide-img" src="src/assets/datasci-images/slideshow/13.svg">
-        <img class="slide-img" src="src/assets/datasci-images/slideshow/14.svg">
-        <img class="slide-img" src="src/assets/datasci-images/slideshow/15.svg">
-        <img class="slide-img" src="src/assets/datasci-images/slideshow/16.svg">
-        <img class="slide-img" src="src/assets/datasci-images/slideshow/17.svg">
-        <img class="slide-img" src="src/assets/datasci-images/slideshow/18.svg">
-        <img class="slide-img" src="src/assets/datasci-images/slideshow/19.svg">
-        <img class="slide-img" src="src/assets/datasci-images/slideshow/20.svg">
-        <img class="slide-img" src="src/assets/datasci-images/slideshow/21.svg">
-        <img class="slide-img" src="src/assets/datasci-images/slideshow/22.svg">
-
-        <button class="slide-button" onclick="plusDivs(-1)">&#8511;</button>
-        <button class="slide-button">&#8511;</button>
-        <button class="slide-button" onclick="plusDivs(+1)">&#8511;</button>
+            </div>
+            <div class="project-card">
+                
+            </div>
+            <div class="project-card">
+                
+            </div>
+            <div class="project-card">
+                
+            </div>
+            <div class="project-card">
+                
+            </div>
+            <div class="project-card">
+                
+            </div>
+        </div>
     </div>
 
-    <div class="proj-desc">
-        <p class="pixelH">Car Prices</p>
+    <div class="experiences-wrapper">
+
     </div>
 
-    <button class="prev-proj-button">&#10094;</button>
-    <button class="next-proj-button">&#10095;</button>
+    <div class="fun-wrapper">
+
+    </div>
 </div>
 
 <script type="text/javascript">
-    var slideIndex = 1;
-    showDivs(slideIndex);
+    let cards = document.querySelectorAll('.project-card');
+    let wrapper = document.getElementById('proj-wrap');
 
-    function plusDivs(n) {
-    showDivs(slideIndex += n);
-    }
+    cards.forEach(card => {
+        card.onmousemove = function(e) {
+            let x = e.pageX - card.offsetLeft;
+            let y = e.pageY - card.offsetTop;
 
-    function showDivs(n) {
-    var i;
-    var x = document.getElementsByClassName("slide-img");
-    if (n > x.length) {slideIndex = 1}
-    if (n < 1) {slideIndex = x.length} ;
-    for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
-    }
-    x[slideIndex-1].style.display = "block";
-    }
+            card.style.setProperty('--x', x+'px');
+            card.style.setProperty('--y', y+'px');
+        }
+    })
 </script>
 
 <style>
-    .slideshow-wrapper{
-        position:relative;
-        width: 80%;
-        left: 50%;
-        transform: translateX(-50%);
-        /* transform: skew(-2deg, -3deg); */
-        position: relative;
-        z-index: 400;
-    }
-    .slide-button{
-        position:relative;
-        top: 0;
-        transform: translateY(-120%);
-        left:0;
-    }
-    .controller{
-        display:inline-flex;
-        width:600px;
-        height:600px;
-    }
-
-    .page-wrapper{
-        display:block;
-        text-align: center;
-    }
     .content-box{
-    display: block;
-    position:relative;
-    height:auto;
-    width:90%;
-	/* border-style: solid;
-	border-width: 2px;
-	border-radius: 8px; 
-	border-color: #81559B; */
-	padding-left: 20px; 
-	padding-right: 20px;
-    margin-left: 20px;
-}
-.slide-img{
-    width:100%;
-}
-.prev-proj-button{
-    position:absolute;
-    left:3%;
-    top: 50%;
-    transform: translateY(-50%);
-}
-.next-proj-button{
-    position:absolute;
-    right:3%;
-    top: 50%;
-    transform: translateY(-50%);
-}
+    }
+    .card-wrapper{
+        display:flex;
+        justify-content: center;
+        align-items:center;
+        flex-wrap:wrap;
+        gap:30px;
+    }
+    .project-card{
+        position: relative;
+        display:flex;
+        width:25%;
+        height:280px;
+        background:black;
+        border-radius: 20px;
+        overflow:hidden;
+        --clr:#81559B;
+    }
+    .project-card::before{
+        content:'';
+        position:absolute;
+        top:var(--y);
+        left:var(--x);
+        transform:translate(-50%,-50%);
+        background: radial-gradient(var(--clr),transparent, transparent);
+        width:450px;
+        height:450px;
+        opacity:0;
+        transition:0.5s, top 0s, left 0s;
+    }
+    .project-card:hover::before{
+        opacity:1;
+    }
+    .project-card::after{
+        content:'';
+        position:absolute;
+        inset:2px;
+        border-radius: 18px;
+        background: rgba(0, 0, 0, 0.8);
+    }
 </style>

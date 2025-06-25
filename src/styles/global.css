@@ -7,6 +7,9 @@ body {
     cursor: url("../assets/cursor/normalLight.cur"), auto;
     background: #14110F;
 }
+button{
+	cursor: url("../assets/cursor/linkLight.cur"), auto;
+}
 
 @font-face {
 	font-family: "redhat";
