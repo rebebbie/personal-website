@@ -33,6 +33,7 @@ p.redhatBody {
 	font-family: "redhat";
 	/* TEMPORARY-ASSET-BELOW - DETERMINE COLOUR LATER */
 	color:#E0D3DE;
+	position:relative;
 }
 
 a:visited {
@@ -51,6 +52,7 @@ p.pixelH {
 	font-size: 32px;
 	/* TEMPORARY-ASSET-BELOW - DETERMINE COLOUR LATER */
 	color: #81559B;
+	position:relative;
 }
 
 .command{ 

@@ -1,10 +1,14 @@
 ---
 import Bubble from '../components/cursorTrail.astro';
 import Music from '../components/musicPlayer.astro';
-import Project from '../components/projects.astro';
+import Project from '../components/datasci-content.astro';
 import SocBar from '../components/socbar.astro';
+import Star1 from '../assets/datasci-images/star1.svg';
+import Star2 from '../assets/datasci-images/star2.svg';
+import Star3 from '../assets/datasci-images/star3.svg';
+import Star4 from '../assets/datasci-images/star4.svg';
+import Star5 from '../assets/datasci-images/star5.svg';
 import '../styles/global.css';
-import type Projects from '../components/projects.astro';
 ---
 
 <!-- 
@@ -44,6 +48,12 @@ import type Projects from '../components/projects.astro';
                     <!-- TEMPORARY-ASSET-BELOW -->
                     <!-- PROJECTS -->
                     <img class="nav-button-img" src="https://i.imgur.com/H4JD35M.png"> 
+                    <img src={Star1.src}  class="deco" id="star-deco1"> 
+                    <img src={Star2.src}  class="deco" id="star-deco2"> 
+                    <img src={Star3.src}  class="deco" id="star-deco3"> 
+                    <img src={Star4.src}  class="deco" id="star-deco4"> 
+                    <img src={Star5.src}  class="deco" id="star-deco5"> 
+
                 </a>
                 <a class="nav-button-wrapper">
                     <!-- TEMPORARY-ASSET-BELOW -->
@@ -70,7 +80,17 @@ import type Projects from '../components/projects.astro';
 </html>
 
 <script type="text/javascript">
+    let s1 = document.getElementById("star-deco1");
+    let s2 = document.getElementById("star-deco2");
+    let s3 = document.getElementById("star-deco3");
+    let s4 = document.getElementById("star-deco4");
+    let s5 = document.getElementById("star-deco5");
 
+    s1.style.left="20px";
+    s2.style.left="40px";
+    s3.style.left="60px";
+    s4.style.left="80px";
+    s5.style.left="100px";
 </script>
 
 <style>
@@ -91,6 +111,7 @@ img.pfp{
 	border-width: 2px;
 	border-radius: 8px; 
 	border-color: #81559B;
+    background-color:black;
     margin-bottom:20px;
 	padding-left: 20px; 
 	padding-right: 20px;
@@ -141,6 +162,13 @@ img.pfp{
 }
 .nav-button-wrapper:hover .nav-button-img{
     transform: rotate(-6deg);
+}
+.deco{
+    width:20px;
+    z-index:500;
+    position:fixed;
+    bottom:10px;
+    left:20px;
 }
 
 @keyframes jelly-anim-bg {
