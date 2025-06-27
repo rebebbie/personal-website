@@ -86,11 +86,22 @@ import '../styles/global.css';
     let s4 = document.getElementById("star-deco4");
     let s5 = document.getElementById("star-deco5");
 
+    // temp. just for testing.
     s1.style.left="20px";
     s2.style.left="40px";
     s3.style.left="60px";
     s4.style.left="80px";
     s5.style.left="100px";
+
+    //will probably get rid of this. just want to MOVE COORDS of stars using js
+    window.addEventListener("load", () => {
+		rotateStar();
+	});
+
+	function rotateStar(t) {
+		console.log("rotating the star...");
+	}
+
 </script>
 
 <style>
@@ -169,6 +180,12 @@ img.pfp{
     position:fixed;
     bottom:10px;
     left:20px;
+
+  -webkit-animation: rotating 2s linear infinite alternate;
+  -moz-animation: rotating 2s linear infinite alternate;
+  -ms-animation: rotating 2s linear infinite alternate;
+  -o-animation: rotating 2s linear infinite alternate;
+  animation: rotating 2s linear infinite alternate;
 }
 
 @keyframes jelly-anim-bg {
@@ -198,6 +215,35 @@ img.pfp{
     100%{
         border-radius: 45% 55% 60% 40% / 60% 37% 63% 40% ;
     }
+}
+
+@-webkit-keyframes rotating /* Safari and Chrome */ {
+  from {
+    -webkit-transform: rotate(0deg) scale(1);
+    -o-transform: rotate(0deg) scale(1);
+    transform: rotate(0deg) scale(1);
+  }
+  to {
+    -webkit-transform: rotate(360deg) scale(0.2);
+    -o-transform: rotate(360deg) scale(0.2);
+    transform: rotate(360deg scale(0.2));
+  }
+}
+@keyframes rotating {
+  from {
+    -ms-transform: rotate(0deg) scale(1);
+    -moz-transform: rotate(0deg) scale(1);
+    -webkit-transform: rotate(0deg) scale(1);
+    -o-transform: rotate(0deg) scale(1);
+    transform: rotate(0deg) scale(1);
+  }
+  to {
+    -ms-transform: rotate(360deg) scale(0.2);
+    -moz-transform: rotate(360deg) scale(0.2);
+    -webkit-transform: rotate(360deg) scale(0.2);
+    -o-transform: rotate(360deg) scale(0.2);
+    transform: rotate(360deg) scale(0.2);
+  }
 }
 
 </style>
