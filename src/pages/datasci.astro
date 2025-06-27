@@ -85,52 +85,46 @@ import '../styles/global.css';
     let s3 = document.getElementById("star-deco3");
     let s4 = document.getElementById("star-deco4");
     let s5 = document.getElementById("star-deco5");
+    let s = [s1,s2,s3,s4,s5];
     let navButton = document.getElementById("nav-projects");
+    let currButton = "nav-projects";
     let navRect = navButton.getBoundingClientRect();
-
-    // temp. just for testing.
-    // s1.style.left="20px";
-    // s2.style.left="40px";
-    // s3.style.left="60px";
-    // s4.style.left="80px";
-    // s5.style.left="100px";
+    let time;
 
     window.addEventListener("load", () => {
-		updateStars("nav-projects");
+		updateStars(currButton);
+
+        for (let i = 0; i < 5; i++) {
+            time = Math.random() + 1;
+            s[i].style.setProperty('--animation-time',time+'s');
+        }
 	});
 
+    window.addEventListener("resize", (e) => {
+        updateStars(currButton);
+    });
+
+    function changeButton(destButton){
+        currButton=destButton;
+        updateStars(currButton);
+    }
+
     //for some reason it's ... one below what it should be
-    function updateStars(rectCoords) {
-        navButton = document.getElementById(rectCoords);
+    function updateStars(destButton) {
+        navButton = document.getElementById(destButton);
         navRect = navButton.getBoundingClientRect();
         s1.style.left=(navRect.left-20)+'px';
-        s1.style.top=(navRect.bottom+5)+'px';
+        s1.style.top=(navRect.top+5)+'px';
         s2.style.left=(navRect.left-10)+'px';
-        s2.style.top=(navRect.bottom+15)+'px';
+        s2.style.top=(navRect.top+15)+'px';
         s3.style.left=(navRect.right-10)+'px';
-        s3.style.top=navRect.bottom+'px';
+        s3.style.top=navRect.top+'px';
         s4.style.left=(navRect.right)+'px';
-        s4.style.top=(navRect.bottom+10)+'px';
+        s4.style.top=(navRect.top+10)+'px';
         s5.style.left=(navRect.right-10)+'px';
-        s5.style.top=(navRect.bottom+20)+'px';
+        s5.style.top=(navRect.top+20)+'px';
         console.log(navRect.top, navRect.right, navRect.bottom, navRect.left);
 	}
-
-    //MOVE COORDS of stars using js
-    //TODO make into function
-    //onload call function with "nav-projects"
-    // navRect = navButton.getBoundingClientRect();
-    // s1.style.left=(navRect.left-20)+'px';
-    // s1.style.top=(navRect.bottom+5)+'px';
-    // s2.style.left=(navRect.left-10)+'px';
-    // s2.style.top=(navRect.bottom+15)+'px';
-    // s3.style.left=(navRect.right-10)+'px';
-    // s3.style.top=navRect.bottom+'px';
-    // s4.style.left=(navRect.right)+'px';
-    // s4.style.top=(navRect.bottom+10)+'px';
-    // s5.style.left=(navRect.right-10)+'px';
-    // s5.style.top=(navRect.bottom+20)+'px';
-    // console.log(navRect.top, navRect.right, navRect.bottom, navRect.left);
 
 </script>
 
@@ -163,6 +157,7 @@ img.pfp{
     color:aliceblue;
     display: inline-flex;
     position:relative;
+    --animation-time: 2s;
 }
 .nav-button-wrapper::before{
     position: absolute;
@@ -195,6 +190,7 @@ img.pfp{
 }
 .nav-button-wrapper:hover:after {
     visibility: visible;
+    opacity: 0.8;
     animation: jelly-anim 3s infinite ease-in-out alternate;
     z-index:3;
 }
@@ -211,11 +207,11 @@ img.pfp{
     bottom:10px;
     left:20px;
 
-  -webkit-animation: rotating 2s linear infinite alternate;
-  -moz-animation: rotating 2s linear infinite alternate;
-  -ms-animation: rotating 2s linear infinite alternate;
-  -o-animation: rotating 2s linear infinite alternate;
-  animation: rotating 2s linear infinite alternate;
+  -webkit-animation: rotating var(--animation-time) linear infinite alternate;
+  -moz-animation: rotating var(--animation-time) linear infinite alternate;
+  -ms-animation: rotating var(--animation-time) linear infinite alternate;
+  -o-animation: rotating var(--animation-time) linear infinite alternate;
+  animation: rotating var(--animation-time) linear infinite alternate;
 }
 
 @keyframes jelly-anim-bg {
@@ -254,9 +250,9 @@ img.pfp{
     transform: rotate(0deg) scale(1);
   }
   to {
-    -webkit-transform: rotate(360deg) scale(0.2);
-    -o-transform: rotate(360deg) scale(0.2);
-    transform: rotate(360deg scale(0.2));
+    -webkit-transform: rotate(360deg) scale(0.35);
+    -o-transform: rotate(360deg) scale(0.35);
+    transform: rotate(360deg scale(0.35));
   }
 }
 @keyframes rotating {
@@ -268,11 +264,11 @@ img.pfp{
     transform: rotate(0deg) scale(1);
   }
   to {
-    -ms-transform: rotate(360deg) scale(0.2);
-    -moz-transform: rotate(360deg) scale(0.2);
-    -webkit-transform: rotate(360deg) scale(0.2);
-    -o-transform: rotate(360deg) scale(0.2);
-    transform: rotate(360deg) scale(0.2);
+    -ms-transform: rotate(360deg) scale(0.35);
+    -moz-transform: rotate(360deg) scale(0.35);
+    -webkit-transform: rotate(360deg) scale(0.35);
+    -o-transform: rotate(360deg) scale(0.35);
+    transform: rotate(360deg) scale(0.35);
   }
 }
 
