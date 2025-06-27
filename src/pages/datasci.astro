@@ -44,7 +44,7 @@ import '../styles/global.css';
                     </p>
                 </div>
                 
-                <a class="nav-button-wrapper">
+                <a class="nav-button-wrapper" id="nav-projects">
                     <!-- TEMPORARY-ASSET-BELOW -->
                     <!-- PROJECTS -->
                     <img class="nav-button-img" src="https://i.imgur.com/H4JD35M.png"> 
@@ -55,7 +55,7 @@ import '../styles/global.css';
                     <img src={Star5.src}  class="deco" id="star-deco5"> 
 
                 </a>
-                <a class="nav-button-wrapper">
+                <a class="nav-button-wrapper" id="nav-experiences">
                     <!-- TEMPORARY-ASSET-BELOW -->
                      <!-- EXPERIENCES -->
                     <img class="nav-button-img" src="https://i.imgur.com/H4JD35M.png"> 
@@ -85,22 +85,52 @@ import '../styles/global.css';
     let s3 = document.getElementById("star-deco3");
     let s4 = document.getElementById("star-deco4");
     let s5 = document.getElementById("star-deco5");
+    let navButton = document.getElementById("nav-projects");
+    let navRect = navButton.getBoundingClientRect();
 
     // temp. just for testing.
-    s1.style.left="20px";
-    s2.style.left="40px";
-    s3.style.left="60px";
-    s4.style.left="80px";
-    s5.style.left="100px";
+    // s1.style.left="20px";
+    // s2.style.left="40px";
+    // s3.style.left="60px";
+    // s4.style.left="80px";
+    // s5.style.left="100px";
 
-    //will probably get rid of this. just want to MOVE COORDS of stars using js
     window.addEventListener("load", () => {
-		rotateStar();
+		updateStars("nav-projects");
 	});
 
-	function rotateStar(t) {
-		console.log("rotating the star...");
+    //for some reason it's ... one below what it should be
+    function updateStars(rectCoords) {
+        navButton = document.getElementById(rectCoords);
+        navRect = navButton.getBoundingClientRect();
+        s1.style.left=(navRect.left-20)+'px';
+        s1.style.top=(navRect.bottom+5)+'px';
+        s2.style.left=(navRect.left-10)+'px';
+        s2.style.top=(navRect.bottom+15)+'px';
+        s3.style.left=(navRect.right-10)+'px';
+        s3.style.top=navRect.bottom+'px';
+        s4.style.left=(navRect.right)+'px';
+        s4.style.top=(navRect.bottom+10)+'px';
+        s5.style.left=(navRect.right-10)+'px';
+        s5.style.top=(navRect.bottom+20)+'px';
+        console.log(navRect.top, navRect.right, navRect.bottom, navRect.left);
 	}
+
+    //MOVE COORDS of stars using js
+    //TODO make into function
+    //onload call function with "nav-projects"
+    // navRect = navButton.getBoundingClientRect();
+    // s1.style.left=(navRect.left-20)+'px';
+    // s1.style.top=(navRect.bottom+5)+'px';
+    // s2.style.left=(navRect.left-10)+'px';
+    // s2.style.top=(navRect.bottom+15)+'px';
+    // s3.style.left=(navRect.right-10)+'px';
+    // s3.style.top=navRect.bottom+'px';
+    // s4.style.left=(navRect.right)+'px';
+    // s4.style.top=(navRect.bottom+10)+'px';
+    // s5.style.left=(navRect.right-10)+'px';
+    // s5.style.top=(navRect.bottom+20)+'px';
+    // console.log(navRect.top, navRect.right, navRect.bottom, navRect.left);
 
 </script>
 
