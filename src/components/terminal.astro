@@ -355,9 +355,13 @@
             cmdDesc: "Clears all previous commands",
             run: function () {
                 let helpText = document.createElement("p");
-                helpText.innerHTML = "<p class='pixelCons' style='text-align:left;'>Type <a class='pixelCode'>help</a> for a list of commands.</p>";
+                helpText.innerHTML = "<p class='pixelCons' style='text-align:left;'>Copyright &copy;2025 Rebecca Han. All rights reserved.<br>Last updated: June 2025<br><br>Welcome to my website!<br>Type <a class='pixelCode'>help</a> for a list of commands.</p>";
                 consoleBox.innerHTML="";
                 consoleBox.appendChild(helpText);
+                window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: "smooth",
+                });
             }
         }
     };
