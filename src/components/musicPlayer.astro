@@ -39,7 +39,7 @@ PROGRESS AND TODO:
                 <img class="muteButton" id="mutePlay">
             </button>
         </div>
-        <input type = "range" value="20" id="volumeBar">
+        <input type = "range" value="10" id="volumeBar">
 	</div>
     </div>
 
@@ -58,11 +58,11 @@ PROGRESS AND TODO:
 
 
         const songs = [
-            {
-                source: "/src/assets/music/songs/test.mp3",
-                name: "temp song",
-                artist: "temp artist"
-            },
+            // {
+            //     source: "/src/assets/music/songs/test.mp3",
+            //     name: "temp song",
+            //     artist: "temp artist"
+            // },
             {
                 source: "/src/assets/music/songs/01-dreamboat.mp3",
                 name: "Dream Boat",
@@ -169,7 +169,7 @@ PROGRESS AND TODO:
 
             let v = localStorage.getItem("volume");
             if(!v && v!=0){
-                v=20;
+                v=10;
             }
             songVol.max = 100;
             songVol.value = v;

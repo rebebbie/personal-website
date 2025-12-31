@@ -21,6 +21,28 @@
     let commandStr = "";
     let cmdIndex = 0;
 
+    // getGradientColor function code from: 
+    // https://code.nkslearning.com/blogs/how-to-find-a-color-between-two-colors-in-a-linear-gradient_67bf12a415e76a46b754
+    // gets specific value on the gradient between two colors
+    function getGradientColor(x, l, c1, c2) {
+    // Parse RGB values from the color strings
+        function parseRGB(color) {
+            return color.match(/\d+/g).map(Number);
+        }
+
+        let rgb1 = parseRGB(c1);
+        let rgb2 = parseRGB(c2);
+
+        // Calculate the parameter t
+        let t = x / l;
+
+        let r = Math.round(rgb1[0] + t * (rgb2[0] - rgb1[0]));
+        let g = Math.round(rgb1[1] + t * (rgb2[1] - rgb1[1]));
+        let b = Math.round(rgb1[2] + t * (rgb2[2] - rgb1[2]));
+
+        return `rgb(${r}, ${g}, ${b})`;
+    }
+
     const cmdList = {
         help: {
             cmdDesc: "You are here!",
@@ -85,14 +107,24 @@
                 consoleBox.appendChild(contTable);
             },
         },
-        resume: {
-            cmdDesc: "Download my resume",
+        data: {
+            cmdDesc: "Download my data-science resume",
             run: function () {
                 let rlink = document.createElement("a");
-                rlink.href = "src/assets/resume.pdf";
-                rlink.download = "Rebecca Han Resume";
+                rlink.href = "src/assets/dataresume.pdf";
+                rlink.download = "Rebecca Han Data Resume";
                 consoleBox.appendChild(rlink);
-                // let rlink = document.getElementById("resumeLink");
+                rlink.click();
+                rlink.remove();
+            },
+        },
+        it: {
+            cmdDesc: "Download my IT resume",
+            run: function () {
+                let rlink = document.createElement("a");
+                rlink.href = "src/assets/itresume.pdf";
+                rlink.download = "Rebecca Han IT Resume";
+                consoleBox.appendChild(rlink);
                 rlink.click();
                 rlink.remove();
             },
@@ -144,12 +176,185 @@
                 consoleBox.appendChild(skillTable);
             },
         },
-        "data science": {
-            cmdDesc: "Enter the homepage for my Data Science Portfolio Website",
+        experiences: {
+            cmdDesc: "View a summary of my relevant experiences",
             run: function () {
-                document.dispatchEvent(new CustomEvent("setSong"));
+                console.log("experiences function ran");
+                let expTable;
+                let row1, row2, row3, row4, row5;
+                expRows = [row3, row4, row5];
+                let col1, col2, col3, col4, col5;
+                expCols = [col3, col4, col5];
+                let expList = [
+                    [
+                        "Helpdesk Support Representative @ University of Toronto",
+                        "Sep 2024 - Present",
+                        "&#9702; Provided account management solutions for over 1000 students, including password resets and identity verification for multi-factor authentication",
+                        "&#9702; Optimized the walk-in and phone call experience by lowering average first response and follow-up time by 30% to improve customer satisfaction",
+                        "&#9702; Managed three computer labs with a total of 80 workstations, performing daily firmware updates and maintaining the Audio-Visual systems within each lab",
+                    ],
+                    [
+                        "Tech Analyst Intern @ Toyota Canada Inc.",
+                        "Jan 2024 - Sep 2024",
+                        "&#9702; Recovered computers affected by the international Crowdstrike outage and saved the company over 10K CAD in hardware replacement costs",
+                        "&#9702; Supported hardware needs for a company of 1500+ users as a member of a 4-person Implementations team, and wrote documentation on proper maintenance for future interns",
+                        "&#9702; Imaged 100+ Lenovo laptops on Windows 10 and 11, and configured Apple iOS devices for business users with an average 30-minute turnaround time per device",
+                    ],
+                    [
+                        "Analytics Intern @ Canada Revenue Agency (CRA)", 
+                        "Jan 2023 - Dec 2023",
+                        "&#9702; Developed and tested SQL code for the processing and storage of big datasets with ~28 million entries",
+                        "&#9702; Optimized legacy SQL code to reduce runtimes for slow queries by up to 90%, which increased the team’s productivity and number of completed reports per workday by 50%",
+                        "&#9702; Created macros in Microsoft Excel VBA to generate organized and informative reports using the fetched SQL data, which was deployed to over 1700 auditors at the CRA to make their workflow more efficient",
+                    ],
+                ];
+                let counter=0;
+                for (item of expList) {
+                    expTable = document.createElement("TABLE");
+                    expTable.style.textAlign = "left";
+                    expTable.classList.add("cmdTable");
+                    row1 = document.createElement("TR");
+                    row1.style.color = "#E0D3DE";
+                    expTable.appendChild(row1);
+                    col1 = document.createElement("TD");
+                    col1.style.width = "30%";
+                    col1.innerHTML = item[0];
+                    col1.style.filter =
+                        "drop-shadow(0px 0px 3px " + "#E0D3DE" + ")";
+                    col1.classList.add("cmdTableName");
+
+                    row2 = document.createElement("TR");
+                    row2.style.color = "#E0D3DE";
+                    expTable.appendChild(row2);
+                    col2 = document.createElement("TD");
+                    col2.style.width = "30%";
+                    col2.innerHTML = item[1];
+                    col2.style.filter = "none";
+                    col2.classList.add("cmdTableName");
+
+                    row1.appendChild(col1);
+                    row2.appendChild(col2);
+
+                    let i=0;
+                    for(r in expRows){
+                        r = document.createElement("TR");
+                        r.style.color = getGradientColor(counter, 300, "rgb(177, 148, 189)", "rgb(129, 85, 155)");
+                        expTable.appendChild(r);
+                        expCols[i] = document.createElement("TD");
+                        expCols[i].innerHTML = item[i+2];
+                        console.log(item);
+                        console.log(item[i+3]);
+                        r.appendChild(expCols[i]);
+                        i++;
+                    }
+
+                    consoleBox.appendChild(expTable);
+                    consoleBox.appendChild(document.createTextNode('\u00A0'));
+                    counter=counter+100;
+                }
             },
         },
+        projects: {
+            cmdDesc: "Some of my relevant projects",
+            run: function () {
+                console.log("projects function ran");
+                let expTable;
+                let row1, row2, row3, row4, row5;
+                expRows = [row3, row4, row5];
+                let col1, col2, col3, col4, col5;
+                expCols = [col3, col4, col5];
+                let expList = [
+                    [
+                        "Web-scraping tool (Python) to automate shared mailbox management",
+                        "Written for UofT's shared mailbox cleanup project",
+                        "&#9702; Written in Python, with Selenium to simulate the browser",
+                        "&#9702; Script flagged mailboxes that did not meet the university's safety standards; Over 80% ended up being cleared, which opened up server space",
+                        "&#9702; Script is reusable, saving approximately 2 weeks of work every year",
+                    ],
+                    [
+                        "AI Text Summarizer using Python’s spaCy library",
+                        "<a class='pixelEm' href='https://github.com/rebebbie/Notes-Summarizer' target='_blank'>View this project on <b>GitHub</b>!</a>",
+                        "&#9702; Developed in December 2024 as a summarizer for digital text notes, particularly useful for philosophy or english students",
+                        "&#9702; A Python program that utilizes the spaCy library to generate two summaries of an input text file, a shortened version that selects the most important sentences, and an abstracted version using Pegasus",
+                        "&#9702; Conducted research into the best Python pipelines to use on large text files by experimenting with different APIs and models from Transformers",
+                    ],
+                    [
+                        "Modelling Car Price Data in Serbia 2024 using RStudio",
+                        "<a class='pixelEm' href='https://github.com/rebebbie/C67_Final_Project' target='_blank'>View this project on <b>GitHub</b>!</a>",
+                        "&#9702; Led a team with 3 other data scientists in the creation of a model to predict a car’s price in Serbia given 17 features and 8414 rows of raw data, as well as the subsequent Microsoft PowerPoint presentation to explain our findings",
+                        "&#9702; Final model has Adjusted R-Squared score of 86% after performing data analysis on relevant variables, removing detected outliers, and performing a Box-Cox transformation to adhere to LINE assumptions",
+                        "&#9702; Conducted market research to understand the potential patterns behind the data, then implemented knowledge to clean the data of all multicollinearity and improve the VIF score",
+                    ],
+                    [
+                        "Android Timetable Builder using Android Studio", 
+                        "<a class='pixelEm' href='https://github.com/TANYAL77/B07-group6' target='_blank'>View this project on <b>GitHub</b>!</a>",
+                        "&#9702; Developed a mobile application with 4 other software engineers in Java, using Firebase as a tool for storing backend information",
+                        "&#9702; Followed Agile development cycle",
+                        "&#9702; Demonstrated strong teamwork and communication abilities",
+                    ],
+                    [
+                        "Personal Website",
+                        "You are here! :)",
+                        "&#9702; Developed throughout Summer 2025 as a visually interesting and interactive website using vanilla HTML, CSS, and JavaScript",
+                        "&#9702; Built using Astro framework for faster loading times",
+                        "&#9702; Applied usability guidelines to create a website that is easy to navigate while being memorable",
+                    ],
+                ];
+                let counter=0;
+                for (item of expList) {
+                    expTable = document.createElement("TABLE");
+                    expTable.style.textAlign = "left";
+                    expTable.classList.add("cmdTable");
+                    row1 = document.createElement("TR");
+                    row1.style.color = "#E0D3DE";
+                    expTable.appendChild(row1);
+                    col1 = document.createElement("TD");
+                    col1.style.width = "30%";
+                    col1.innerHTML = item[0];
+                    col1.style.filter =
+                        "drop-shadow(0px 0px 3px " + "#E0D3DE" + ")";
+                    col1.classList.add("cmdTableName");
+
+                    row2 = document.createElement("TR");
+                    row2.style.color = "#E0D3DE";
+                    expTable.appendChild(row2);
+                    col2 = document.createElement("TD");
+                    col2.style.width = "30%";
+                    col2.innerHTML = item[1];
+                    col2.style.filter = "none";
+                    col2.classList.add("cmdTableName");
+
+                    row1.appendChild(col1);
+                    row2.appendChild(col2);
+
+                    let i=0;
+                    for(r in expRows){
+                        r = document.createElement("TR");
+                        r.style.color = getGradientColor(counter, 300, "rgb(177, 148, 189)", "rgb(129, 85, 155)");
+                        expTable.appendChild(r);
+                        expCols[i] = document.createElement("TD");
+                        expCols[i].innerHTML = item[i+2];
+                        console.log(item);
+                        console.log(item[i+3]);
+                        r.appendChild(expCols[i]);
+                        i++;
+                    }
+
+                    consoleBox.appendChild(expTable);
+                    consoleBox.appendChild(document.createTextNode('\u00A0'));
+                    counter=counter+60;
+                }
+            },
+        },
+        "clear": {
+            cmdDesc: "Clears all previous commands",
+            run: function () {
+                let helpText = document.createElement("p");
+                helpText.innerHTML = "<p class='pixelCons' style='text-align:left;'>Type <a class='pixelCode'>help</a> for a list of commands.</p>";
+                consoleBox.innerHTML="";
+                consoleBox.appendChild(helpText);
+            }
+        }
     };
 
     document.addEventListener("loadDataPage", () => {
