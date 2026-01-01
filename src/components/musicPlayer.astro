@@ -1,5 +1,5 @@
 ---
-import songTest from '../assets/music/songs/testsong.mp3';
+import songInit from '../assets/music/songs/01-dreamboat.mp3';
 ---
 
 <!-- 
@@ -26,7 +26,7 @@ PROGRESS AND TODO:
 		    <p class="songNameTitle"><a class="pixelEm" id="songName"><i></i></a></p>
 	    </div>
         <audio id="curSong">
-            <source src={ songTest } type="audio/mpeg" id="curSongSrc">
+            <source src={ songInit } type="audio/mpeg" id="curSongSrc">
             <p><a class="pixelEm">[Your browser does not support the audio element.]</a></p>
         </audio>
         <input type = "range" value="0" id="musicBar">
@@ -58,11 +58,6 @@ PROGRESS AND TODO:
 
 
         const songs = [
-            // {
-            //     source: "/src/assets/music/songs/test.mp3",
-            //     name: "temp song",
-            //     artist: "temp artist"
-            // },
             {
                 source: "/src/assets/music/songs/01-dreamboat.mp3",
                 name: "Dream Boat",

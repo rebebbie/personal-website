@@ -3,6 +3,7 @@ import Bubble from '../components/cursorTrail.astro';
 import fishImg from '../assets/fish.svg';
 import Music from '../components/musicPlayer.astro';
 import Terminal from '../components/terminal.astro';
+import MobileTerminal from '../components/mterminal.astro';
 import '../styles/global.css';
 ---
 
@@ -14,28 +15,36 @@ import '../styles/global.css';
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="icon" type="image/svg+xml" href='src/assets/emolga.gif' />
 		<meta name="generator" content={Astro.generator} />
 		<title>Bec!</title>
 	</head>
 	<body>
 
-<Music />
 <Bubble />
 
-<div class="flexTable">
-	<div class="col-3"> 
-		<img src={fishImg.src} class="scaleImg"> 
+<div class="desktop">
+	<Music />
+	<div class="flexTable">
+		<div class="col-3"> 
+			<img src={fishImg.src} class="scaleImg"> 
+		</div>
+		<div class="col-6">
+			<p class="iam-name">REBECCA <b>若汐</b> HAN</p>
+			<p class="iam-text" id="iam"></p>
+			<Terminal />
+		</div>
+		<div class="col-3">
+			<img src={fishImg.src} class="flipScaleImg">
+		</div>
 	</div>
-	<div class="col-6">
-		<p class="iam-name">REBECCA <b>若汐</b> HAN</p>
-		<p class="iam-text" id="iam"></p>
-		<Terminal />
-	</div>
-	<div class="col-3">
-		<img src={fishImg.src} class="flipScaleImg">
-	</div>
+</div>
+
+<div class="mobile">
+	<p class="iam-name">REBECCA <b>若汐</b> HAN</p>
+	<p class="iam-text" id="iam-mobile"></p>
+	<MobileTerminal />
 </div>
 
 <div class="top-scroll-button">
@@ -45,14 +54,18 @@ import '../styles/global.css';
 </html>
 
 <script type="text/javascript">
-	let iamtext = document.getElementById("iam");
+	let iamtext;
+	let vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+	if (vw<=1280){
+		iamtext = document.getElementById("iam-mobile");
+	}
+	else{
+		iamtext = document.getElementById("iam");
+	}
 	function topFunction() {
 		window.scrollTo({top:0, behavior: 'smooth'});
 	}
 	
-	// window.onload = (e) => {
-	// 	loopText(texts[textIndex]);
-	// };
 	window.addEventListener("load", () => {
 		loopText(texts[textIndex]);
 	});
@@ -95,6 +108,22 @@ import '../styles/global.css';
 			}, Math.random() * (200 - 50) + 50);
 		}
 	}
+
+	window.addEventListener("resize", () => {
+		console.log("detecting resize");
+
+		let vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+		// let vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+		if (vw<=1280){
+			iamtext = document.getElementById("iam-mobile");
+		}
+		else{
+			iamtext = document.getElementById("iam");
+		}
+
+		// min width vw is 1280 for desktop view
+	})
+
 	
 </script>
 
@@ -106,8 +135,29 @@ import '../styles/global.css';
 		height: 100%;
 	}
 
+	/* default */
+	.desktop {
+		display: block;
+	}
+	.mobile {
+		display: none;
+	}
+	/* end default */
+
+	/* mobile-only */
+	@media (max-width: 1280px) {
+		.desktop {
+			display: none;
+		}
+		.mobile {
+			display: block;
+		}
+	}
+	/* end mobile only */
+
 	img.flipScaleImg {
 		height: 80%;
+		width:auto;
 		max-width: 100%;
 		position: fixed;
 		display: flex;
@@ -117,8 +167,9 @@ import '../styles/global.css';
 
 	img.scaleImg{
 		height: 80%;
+		width:auto;
 		max-width: 100%;
-		position: fixed;
+		position:fixed;
 		display: flex;
 		pointer-events: none;
 	}

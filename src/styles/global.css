@@ -259,8 +259,8 @@ img {
 .col-3 {
 	flex-basis: calc(3 / 12 * 100%);
 	align-items: center;
-	justify-content: center;
-	display: block;
+	justify-self: center;
+	display: inline-block;
 }
 
 .col-4 {
