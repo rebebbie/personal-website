@@ -4,29 +4,29 @@ body {
     width: 100%;
     overflow-x: hidden;
 	overflow-y: visible;
-    cursor: url("../assets/cursor/normalLight.cur"), auto;
+    cursor: url("../../public/assets/cursor/normalLight.cur"), auto;
     background: #14110F;
 }
 button{
-	cursor: url("../assets/cursor/linkLight.cur"), auto;
+	cursor: url("../../public/assets/cursor/linkLight.cur"), auto;
 }
 
 @font-face {
 	font-family: "redhat";
 	/* obtained from https://fonts.google.com/specimen/Red+Hat+Display */
-	src: url('../assets/fonts/RedHatDisplay-VariableFont_wght.ttf') format("truetype");
+	src: url('../../public/assets/fonts/RedHatDisplay-VariableFont_wght.ttf') format("truetype");
 }
 
 @font-face {
 	font-family: "pixel";
 	/* obtained from https://www.dafont.com/pixel-operator.font */
-	src: url(../assets/fonts/PixelOperator.ttf) format("truetype");
+	src: url(../../public/assets/fonts/PixelOperator.ttf) format("truetype");
 }
 
 @font-face {
 	font-family: "pixelHeader";
 	/* obtained from https://fonts.google.com/specimen/Jersey+25 */
-	src: url(../assets/fonts/Jersey25-Regular.ttf) format("truetype");
+	src: url(../../public/assets/fonts/Jersey25-Regular.ttf) format("truetype");
 }
 
 p.redhatBody {
@@ -73,7 +73,7 @@ p.pixelH {
 	font-family: "pixelHeader", Verdana, Tahoma;
 	font-size: 20px;
 	text-wrap: wrap; 
-	cursor: url("../assets/cursor/textLight.cur"), auto;
+	cursor: url("../../public/assets/cursor/textLight.cur"), auto;
 }
 .terminal-input:focus{
 	outline:none;
@@ -167,7 +167,7 @@ p {
 	line-height: 24px;
 	letter-spacing: -0.006em;
 	margin: 0;
-	cursor: url("../assets/cursor/textLight.cur"), auto;
+	cursor: url("../../public/assets/cursor/textLight.cur"), auto;
 	width: auto;
 	text-align: center;
 	padding: 0.5em 0;
