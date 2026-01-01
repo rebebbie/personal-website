@@ -108,7 +108,7 @@
             cmdDesc: "Download my data-science resume",
             run: function () {
                 let rlink = document.createElement("a");
-                rlink.href = "src/assets/dataresume.pdf";
+                rlink.href = "assets/dataresume.pdf";
                 rlink.download = "Rebecca Han Data Resume";
                 consoleBox.appendChild(rlink);
                 rlink.click();
@@ -119,7 +119,7 @@
             cmdDesc: "Download my IT resume",
             run: function () {
                 let rlink = document.createElement("a");
-                rlink.href = "src/assets/itresume.pdf";
+                rlink.href = "assets/itresume.pdf";
                 rlink.download = "Rebecca Han IT Resume";
                 consoleBox.appendChild(rlink);
                 rlink.click();
@@ -428,7 +428,7 @@
         newContent.style.width = "fit-content";
 
         // newSpan.innerHTML="&gt; ";
-        newSpan.src = "src/assets/cmd-symbol.svg";
+        newSpan.src = "assets/cmd-symbol.svg";
         newSpan.style.height = "10px";
         newSpan.style.marginRight = "5px";
         newSpan2.classList.add("blinking-cursor");
