@@ -41,9 +41,9 @@ PROGRESS AND TODO:
         </div>
         <input type = "range" value="10" id="volumeBar">
 	</div>
-    </div>
+</div>
 
-    <script type="text/javascript">
+<script type="text/javascript">
         let progress = document.getElementById("musicBar");
         let song = document.getElementById("curSong");
         let songSrc = document.getElementById("curSongSrc");
@@ -148,7 +148,7 @@ PROGRESS AND TODO:
             document.dispatchEvent(new CustomEvent("loadDataPage"));
         });
 
-        window.onload = function(){
+        addEventListener("load", (event) => { 
             index = localStorage.getItem("index");
             if(!index){
                 index = 0;
@@ -169,7 +169,7 @@ PROGRESS AND TODO:
             songVol.max = 100;
             songVol.value = v;
             console.log(songVol.value);
-        }
+        })
 
         song.onloadedmetadata = function(){
             console.log("should be 1");
