@@ -184,6 +184,11 @@ h1::selection{
 	color: #B9D996;
 }
 
+tr::selection{
+	background-color: transparent;
+	color: #B9D996;
+}
+
 img {
 	/* TODO : doesn't work as intended */
 	user-select: none;
