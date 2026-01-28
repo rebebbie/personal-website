@@ -55,6 +55,7 @@ PROGRESS AND TODO:
         let songMute = document.getElementById("mutePlay");
         let songMuteB = document.getElementById("mutePlayButton");
         let songVol = document.getElementById("volumeBar");
+        let songInterval = null;
 
 
         const songs = [
@@ -195,7 +196,10 @@ PROGRESS AND TODO:
         }
 
         function playPauseSong(){
+            console.log("FDJSKLFSJLFJKDSLK 1");
             if(playpause.classList.contains("pauseButton")){
+                
+            console.log("FDJSKLFSJLFJKDSLK 2");
                 song.pause();
                 playpause.classList.remove("pauseButton");
                 playpause.classList.add("playButton");
