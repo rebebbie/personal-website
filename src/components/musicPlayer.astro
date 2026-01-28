@@ -201,12 +201,24 @@ PROGRESS AND TODO:
                 playpause.classList.add("playButton");
             }
             else{
-                console.log('hallo jason');
-                song.play();
+                playSong();
                 playpause.classList.remove("playButton");
                 playpause.classList.add("pauseButton");
             }
             playPauseB.blur();
+        }
+
+        function playSong() {
+            if (song.play()) {
+                if (!songInterval) {
+                    songInterval = setInterval(()=>{
+                    progress.value = song.currentTime;
+                    if((progress.max-progress.value)<1) {
+                    nextSong();
+                    }
+                }, 500);
+                }
+            }
         }
 
         function mutePlaySong(){
@@ -232,7 +244,7 @@ PROGRESS AND TODO:
             index = (index + 1)%songs.length;
             songSrc.src = songs[index].source;
             song.load();
-            song.play();
+            playSong();
             playpause.className = "pauseButton";
             nextB.blur();
         }
@@ -240,22 +252,22 @@ PROGRESS AND TODO:
             index = Math.max((index - 1)%songs.length,0);
             songSrc.src = songs[index].source;
             song.load();
-            song.play();
+            playSong();
             playpause.className = "pauseButton";
             prevB.blur();
         }
 
-        if(song.play()){
-            setInterval(()=>{
-                progress.value = song.currentTime;
-                if((progress.max-progress.value)<1){
-                    nextSong();
-                }
-            },500)
-        }
+        // if(song.play()){
+        //     setInterval(()=>{
+        //         progress.value = song.currentTime;
+        //         if((progress.max-progress.value)<1){
+        //             nextSong();
+        //         }
+        //     },500)
+        // }
 
         progress.oninput = function(){
-            song.play();
+            playSong();
             song.currentTime = progress.value;
             playpause.classList.remove("playButton");
             playpause.classList.add("pauseButton");
